@@ -34,7 +34,7 @@ export default class VideosList extends Component {
 
     async buyLicence(isrc) {
         try {
-            const result = await api.buyLicence(this.getUserID(), v.isrc);
+            const result = await api.buyLicence(this.getUserID(), isrc);
             console.log(result);
         } catch (err) {
             console.error(err);
