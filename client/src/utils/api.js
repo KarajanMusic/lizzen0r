@@ -35,6 +35,20 @@ class API {
             user,
         });
     }
+
+    buyLicence(user_id, isrc) {
+        return this.request('POST', 'videos/buy', null, {
+            user_id,
+            isrc,
+        });
+    }
+
+    registerVideo(user_id, link) {
+        return this.request('POST', 'videos/register', null, {
+            user_id,
+            link,
+        });
+    }
 }
 
 export default new API();

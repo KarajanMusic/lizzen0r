@@ -28,7 +28,27 @@ export default class VideosList extends Component {
         }
     }
 
-    async buyLicence() {}
+    getUserID() {
+        return window.GoogleAuth.currentUser.get().El;
+    }
+
+    async buyLicence(isrc) {
+        try {
+            const result = await api.buyLicence(this.getUserID(), v.isrc);
+            console.log(result);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    async registerVideo(link) {
+        try {
+            const result = await api.buyLicence(this.getUserID(), link);
+            console.log(result);
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     render() {
         const { videos } = this.state;
@@ -44,7 +64,7 @@ export default class VideosList extends Component {
                           frameBorder="0"
                           allowFullScreen="true"
                       />
-                      <button onClick={() => this.buyLicence()}>Buy licence</button>
+                      <button onClick={() => this.buyLicence(v.isrc)}>Buy licence</button>
                   </div>
               ));
     }

@@ -28128,8 +28128,34 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         })();
     }
 
-    buyLicence() {
-        return _asyncToGenerator(function* () {})();
+    getUserID() {
+        return window.GoogleAuth.currentUser.get().El;
+    }
+
+    buyLicence(isrc) {
+        var _this2 = this;
+
+        return _asyncToGenerator(function* () {
+            try {
+                const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].buyLicence(_this2.getUserID(), v.isrc);
+                console.log(result);
+            } catch (err) {
+                console.error(err);
+            }
+        })();
+    }
+
+    registerVideo(link) {
+        var _this3 = this;
+
+        return _asyncToGenerator(function* () {
+            try {
+                const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].buyLicence(_this3.getUserID(), link);
+                console.log(result);
+            } catch (err) {
+                console.error(err);
+            }
+        })();
     }
 
     render() {
@@ -28151,7 +28177,7 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'button',
-                { onClick: () => this.buyLicence() },
+                { onClick: () => this.buyLicence(v.isrc) },
                 'Buy licence'
             )
         ));
@@ -28594,6 +28620,20 @@ class API {
     postUser(user) {
         return this.request('POST', 'users', null, {
             user
+        });
+    }
+
+    buyLicence(user_id, isrc) {
+        return this.request('POST', 'videos/buy', null, {
+            user_id,
+            isrc
+        });
+    }
+
+    registerVideo(user_id, link) {
+        return this.request('POST', 'videos/register', null, {
+            user_id,
+            link
         });
     }
 }
