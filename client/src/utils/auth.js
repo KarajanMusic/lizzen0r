@@ -5,6 +5,5 @@ export function isAuthenticated() {
 }
 
 export function getAuthHeader() {
-    console.log(window.GoogleAuth.currentUser.get().Zi.access_token);
     return 'Bearer ' + window.GoogleAuth.currentUser.get().Zi.access_token;
 }

@@ -12,6 +12,7 @@ export default class VideosList extends Component {
             videos: null,
             link: null,
             license_id: null,
+            loading: false,
         };
         this.getVideos = this.getVideos.bind(this);
     }
@@ -36,10 +37,12 @@ export default class VideosList extends Component {
 
     async buyLicense(isrc) {
         try {
+            this.setState({ loading: true });
             const result = await api.buyLicense(this.getUserID(), isrc);
             console.log(result);
             this.setState({
                 license_id: result,
+                loading: false,
             });
             alert('You have been licensed to register a video with this recording!');
         } catch (err) {
@@ -56,7 +59,10 @@ export default class VideosList extends Component {
         }
 
         try {
+            this.setState({ loading: true });
             const result = await api.registerVideo(this.getUserID(), this.state.link, this.state.license_id);
+            this.setState({ loading: false });
+            alert('Your video has been registered!');
             console.log(result);
         } catch (err) {
             console.error(err);
@@ -76,6 +82,16 @@ export default class VideosList extends Component {
         }
         return (
             <div>
+                <div className={'spinner-container' + (this.state.loading ? ' show' : ' hide')}>
+                    <div className="spinner">
+                        <p>Please wait...</p>
+                        <div className="rect1" />
+                        <div className="rect2" />
+                        <div className="rect3" />
+                        <div className="rect4" />
+                        <div className="rect5" />
+                    </div>
+                </div>
                 <h2 className="videos-section-title">Buy music licence</h2>
                 {videos.map(v => (
                     <div className="video-container" key={v.youtube_id}>

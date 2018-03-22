@@ -1672,7 +1672,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".videos-section-title {\n  margin: 10px;\n  font-weight: 200; }\n\np {\n  margin-left: 10px;\n  color: #666; }\n\nhr {\n  margin: 20px; }\n\nform {\n  margin-left: 10px; }\n  form button {\n    margin-left: 5px; }\n\nbutton.black {\n  font-size: 14px;\n  margin-bottom: 0;\n  font-weight: 200;\n  color: #fff;\n  background-color: #121212;\n  border-radius: 4px;\n  padding: 5px 10px;\n  border: 0;\n  transition: all 0.2s ease;\n  cursor: pointer; }\n\nbutton.black:hover {\n  background-color: #b1b1b1; }\n\n.video-container {\n  position: relative;\n  width: calc(33% - 20px);\n  margin: 10px 10px 40px 10px;\n  padding-bottom: calc(20% - 20px);\n  height: 0;\n  display: inline-block;\n  /*overflow: hidden;*/ }\n  .video-container h1 {\n    margin: 0;\n    font-size: 16px;\n    font-weight: 300; }\n  .video-container button {\n    margin-top: calc(50% + 5px); }\n  .video-container iframe,\n  .video-container object,\n  .video-container embed {\n    position: absolute;\n    top: 20px;\n    left: 0;\n    width: 100%;\n    height: calc(100% - 20px);\n    overflow: hidden;\n    border-radius: 2px; }\n", ""]);
+exports.push([module.i, ".videos-section-title {\n  margin: 10px;\n  font-weight: 200; }\n\np {\n  margin-left: 10px;\n  color: #666; }\n\nhr {\n  margin: 20px; }\n\nform {\n  margin-left: 10px; }\n  form button {\n    margin-left: 5px; }\n\nbutton.black {\n  font-size: 14px;\n  margin-bottom: 0;\n  font-weight: 200;\n  color: #fff;\n  background-color: #121212;\n  border-radius: 4px;\n  padding: 5px 10px;\n  border: 0;\n  transition: all 0.2s ease;\n  cursor: pointer; }\n\nbutton.black:hover {\n  background-color: #b1b1b1; }\n\n.video-container {\n  position: relative;\n  width: calc(33% - 20px);\n  margin: 10px 10px 40px 10px;\n  padding-bottom: calc(20% - 20px);\n  height: 0;\n  display: inline-block;\n  /*overflow: hidden;*/ }\n  .video-container h1 {\n    margin: 0;\n    font-size: 16px;\n    font-weight: 300; }\n  .video-container button {\n    margin-top: calc(50% + 5px); }\n  .video-container iframe,\n  .video-container object,\n  .video-container embed {\n    position: absolute;\n    top: 20px;\n    left: 0;\n    width: 100%;\n    height: calc(100% - 20px);\n    overflow: hidden;\n    border-radius: 2px; }\n\n.spinner-container {\n  position: absolute;\n  top: 50px;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n  transition: opacity 0.5s ease;\n  z-index: 10;\n  background: #fff; }\n  .spinner-container.show {\n    opacity: 1;\n    pointer-events: all; }\n  .spinner-container.hide {\n    opacity: 0;\n    pointer-events: none; }\n\n.spinner {\n  margin: 100px auto;\n  width: 100px;\n  height: 40px;\n  text-align: center;\n  font-size: 10px; }\n  .spinner > div {\n    background-color: #333;\n    height: 100%;\n    width: 6px;\n    display: inline-block;\n    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;\n    animation: sk-stretchdelay 1.2s infinite ease-in-out; }\n  .spinner .rect2 {\n    -webkit-animation-delay: -1.1s;\n    animation-delay: -1.1s; }\n  .spinner .rect3 {\n    -webkit-animation-delay: -1s;\n    animation-delay: -1s; }\n  .spinner .rect4 {\n    -webkit-animation-delay: -0.9s;\n    animation-delay: -0.9s; }\n  .spinner .rect5 {\n    -webkit-animation-delay: -0.8s;\n    animation-delay: -0.8s; }\n\n@-webkit-keyframes sk-stretchdelay {\n  0%,\n  40%,\n  100% {\n    -webkit-transform: scaleY(0.4); }\n  20% {\n    -webkit-transform: scaleY(1); } }\n\n@keyframes sk-stretchdelay {\n  0%,\n  40%,\n  100% {\n    transform: scaleY(0.4);\n    -webkit-transform: scaleY(0.4); }\n  20% {\n    transform: scaleY(1);\n    -webkit-transform: scaleY(1); } }\n", ""]);
 
 // exports
 
@@ -28107,7 +28107,8 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.state = {
             videos: null,
             link: null,
-            license_id: null
+            license_id: null,
+            loading: false
         };
         this.getVideos = this.getVideos.bind(this);
     }
@@ -28139,10 +28140,12 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
         return _asyncToGenerator(function* () {
             try {
+                _this2.setState({ loading: true });
                 const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].buyLicense(_this2.getUserID(), isrc);
                 console.log(result);
                 _this2.setState({
-                    license_id: result
+                    license_id: result,
+                    loading: false
                 });
                 alert('You have been licensed to register a video with this recording!');
             } catch (err) {
@@ -28163,7 +28166,10 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             }
 
             try {
+                _this3.setState({ loading: true });
                 const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].registerVideo(_this3.getUserID(), _this3.state.link, _this3.state.license_id);
+                _this3.setState({ loading: false });
+                alert('Your video has been registered!');
                 console.log(result);
             } catch (err) {
                 console.error(err);
@@ -28189,6 +28195,24 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'spinner-container' + (this.state.loading ? ' show' : ' hide') },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'spinner' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'p',
+                        null,
+                        'Please wait...'
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'rect1' }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'rect2' }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'rect3' }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'rect4' }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'rect5' })
+                )
+            ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'h2',
                 { className: 'videos-section-title' },
@@ -28713,7 +28737,6 @@ function isAuthenticated() {
 }
 
 function getAuthHeader() {
-    console.log(window.GoogleAuth.currentUser.get().Zi.access_token);
     return 'Bearer ' + window.GoogleAuth.currentUser.get().Zi.access_token;
 }
 
