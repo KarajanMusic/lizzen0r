@@ -1,25 +1,8 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import Header from '../../components/header/header';
 import './login.scss';
 
 class Login extends Component {
-    constructor() {
-        super();
-    }
-
-    // static propTypes = {
-    //     onConfirm: PropTypes.func.isRequired,
-    //     onCancel: PropTypes.func.isRequired,
-    //     message: PropTypes.string.isRequired,
-    //     title: PropTypes.string.isRequired,
-    // };
-
-    // }
-    //
-    // componentDidMount() {
-    //
-    // }
-
     signIn() {
         window.GoogleAuth.signIn();
     }

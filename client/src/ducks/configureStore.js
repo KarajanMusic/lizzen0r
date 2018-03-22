@@ -11,7 +11,8 @@ const loggerMiddleware = createLogger();
 const historyMiddleware = routerMiddleware(Initialiser.history);
 
 const store = createStore(
-    combineReducers({/*MODULE_NAME*/
+    combineReducers({
+        /*MODULE_NAME*/
     }),
     Initialiser.initialState,
     applyMiddleware(thunkMiddleware, loggerMiddleware, historyMiddleware),

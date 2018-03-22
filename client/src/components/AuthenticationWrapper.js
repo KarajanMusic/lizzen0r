@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { Route, Redirect, Switch } from 'react-router';
+import { Component } from 'react';
+
+import { Route, Switch } from 'react-router';
 import Login from '../scenes/login/login';
 import Home from '../scenes/home/home';
 
@@ -21,7 +22,7 @@ class AuthenticationWrapper extends Component {
         this.setState({ user });
         await api.postUser(user);
         // document.location.href = '/';
-        if (signedInStatus && location.href.indexOf('login') > 0) {
+        if (isSignedIn && location.href.indexOf('login') > 0) {
             location.href = '/';
         }
     }
@@ -30,8 +31,7 @@ class AuthenticationWrapper extends Component {
         // console.log(window.GoogleAuth.isSignedIn.get());
         console.log('MOUNTED AuthenticationWrapper');
         const that = this;
-        window.GoogleAuth; // Google Auth object.
-        function start() {
+        window.gapi.load('client', () => {
             window.gapi.client
                 .init({
                     apiKey: 'AIzaSyAysq3hq5e6seJFkcyoun3s2-5HIRKCNgU',
@@ -39,7 +39,7 @@ class AuthenticationWrapper extends Component {
                     scope: 'https://www.googleapis.com/auth/youtube',
                     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
                 })
-                .then(async function() {
+                .then(async () => {
                     window.GoogleAuth = window.gapi.auth2.getAuthInstance();
                     // console.log(GoogleAuth);
                     // console.log(GoogleAuth.isSignedIn);
@@ -50,8 +50,7 @@ class AuthenticationWrapper extends Component {
                     // updateSigninStatus(GoogleAuth.isSignedIn.get());
                     // GoogleAuth.signIn();
 
-                    console.log('loaded google api');
-                    const signedInStatus = GoogleAuth.isSignedIn.get();
+                    const signedInStatus = window.GoogleAuth.isSignedIn.get();
                     if (signedInStatus) {
                         const user = window.GoogleAuth.currentUser.get();
                         that.setState({ user });
@@ -68,11 +67,10 @@ class AuthenticationWrapper extends Component {
                     // Listen for sign-in state changes.
                     window.GoogleAuth.isSignedIn.listen(that.updateSigninStatus.bind(that));
                 })
-                .catch(function(e) {
+                .catch(e => {
                     console.log(e);
                 });
-        }
-        window.gapi.load('client', start);
+        });
     }
 
     render() {

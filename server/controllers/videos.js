@@ -28,16 +28,16 @@ module.exports = {
             userId,
             isrc,
             startTime,
-            endTime
+            endTime,
         });
         const result = await req.contracts.lizzenz0r.write('registerLicensePurchase', {
             userId,
             isrc,
             startTime,
-            endTime
+            endTime,
         });
         const licenseId = await req.contracts.lizzenz0r.read('getUserLicenseId', {
-            userId
+            userId,
         });
         console.log('LICENSE VIDEO read licenseId: ', licenseId);
         return Response.OK({ result, licenseId }).send(res);
@@ -48,7 +48,7 @@ module.exports = {
                 console.log('BadRequest!', req.body.link, req.body.license_id);
                 return Response.BadRequest().send(res);
             }
-            console.log(req.body.link)
+            console.log(req.body.link);
             const videoData = {
                 youtube_id: await _getYoutubeID(req.body.link),
             };

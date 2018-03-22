@@ -27891,13 +27891,14 @@ module.exports = function(originalModule) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* WEBPACK VAR INJECTION */(function(React) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router__ = __webpack_require__("./node_modules/react-router/es/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scenes_login_login__ = __webpack_require__("./src/scenes/login/login.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scenes_home_home__ = __webpack_require__("./src/scenes/home/home.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_api__ = __webpack_require__("./src/utils/api.js");
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 
 
 
@@ -27925,7 +27926,7 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
             _this.setState({ user });
             yield __WEBPACK_IMPORTED_MODULE_4__utils_api__["a" /* default */].postUser(user);
             // document.location.href = '/';
-            if (signedInStatus && location.href.indexOf('login') > 0) {
+            if (isSignedIn && location.href.indexOf('login') > 0) {
                 location.href = '/';
             }
         })();
@@ -27935,8 +27936,7 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
         // console.log(window.GoogleAuth.isSignedIn.get());
         console.log('MOUNTED AuthenticationWrapper');
         const that = this;
-        window.GoogleAuth; // Google Auth object.
-        function start() {
+        window.gapi.load('client', () => {
             window.gapi.client.init({
                 apiKey: 'AIzaSyAysq3hq5e6seJFkcyoun3s2-5HIRKCNgU',
                 clientId: '1038963969656-a60janj4qrlnkv9mi1l8dp6tup0fgboq.apps.googleusercontent.com',
@@ -27953,8 +27953,7 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
                 // updateSigninStatus(GoogleAuth.isSignedIn.get());
                 // GoogleAuth.signIn();
 
-                console.log('loaded google api');
-                const signedInStatus = GoogleAuth.isSignedIn.get();
+                const signedInStatus = window.GoogleAuth.isSignedIn.get();
                 if (signedInStatus) {
                     const user = window.GoogleAuth.currentUser.get();
                     that.setState({ user });
@@ -27970,11 +27969,10 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
 
                 // Listen for sign-in state changes.
                 window.GoogleAuth.isSignedIn.listen(that.updateSigninStatus.bind(that));
-            })).catch(function (e) {
+            })).catch(e => {
                 console.log(e);
             });
-        }
-        window.gapi.load('client', start);
+        });
     }
 
     render() {
@@ -27985,29 +27983,30 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
         //
         //
         //
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        return React.createElement(
             'div',
             { className: '' },
-            user ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            user ? React.createElement(
                 __WEBPACK_IMPORTED_MODULE_1_react_router__["c" /* Switch */],
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { exact: true, path: '/', render: () => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__scenes_home_home__["a" /* default */], { user: user }) }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { exact: true, path: '/login', component: __WEBPACK_IMPORTED_MODULE_2__scenes_login_login__["a" /* default */] }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { component: () => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                React.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { exact: true, path: '/', render: () => React.createElement(__WEBPACK_IMPORTED_MODULE_3__scenes_home_home__["a" /* default */], { user: user }) }),
+                React.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { exact: true, path: '/login', component: __WEBPACK_IMPORTED_MODULE_2__scenes_login_login__["a" /* default */] }),
+                React.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { component: () => React.createElement(
                         'h1',
                         null,
                         '404 - Not Found'
                     ) })
-            ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            ) : React.createElement(
                 __WEBPACK_IMPORTED_MODULE_1_react_router__["c" /* Switch */],
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { component: __WEBPACK_IMPORTED_MODULE_2__scenes_login_login__["a" /* default */] })
+                React.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { component: __WEBPACK_IMPORTED_MODULE_2__scenes_login_login__["a" /* default */] })
             )
         );
     }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (AuthenticationWrapper);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/react/index.js")))
 
 /***/ }),
 
@@ -28015,7 +28014,7 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* WEBPACK VAR INJECTION */(function(React) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__header_scss__ = __webpack_require__("./src/components/header/header.scss");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__header_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__header_scss__);
@@ -28024,10 +28023,6 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
 
 
 class Header extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-    constructor() {
-        super();
-    }
-
     componentDidMount() {
         // console.log(window.GoogleAuth.isSignedIn.get());
         console.log('MOUNTED');
@@ -28035,10 +28030,10 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     }
 
     render() {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        return React.createElement(
             'div',
             { className: 'global-header' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement(
                 'p',
                 null,
                 'lizzenz0r'
@@ -28048,6 +28043,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Header);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/react/index.js")))
 
 /***/ }),
 
@@ -28087,14 +28083,12 @@ if(false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* WEBPACK VAR INJECTION */(function(React) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__videoslist_scss__ = __webpack_require__("./src/components/videoslist/videoslist.scss");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__videoslist_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__videoslist_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_api__ = __webpack_require__("./src/utils/api.js");
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-//await api.authenticate(credentials);
 
 
 
@@ -28198,122 +28192,122 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     render() {
         const { videos } = this.state;
         if (!videos) {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            return React.createElement(
                 'h2',
                 { className: 'videos-section-title' },
                 'Loading videos...'
             );
         }
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        return React.createElement(
             'div',
             null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement(
                 'div',
                 { className: 'spinner-container' + (this.state.loading ? ' show' : ' hide') },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                React.createElement(
                     'div',
                     { className: 'spinner' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    React.createElement(
                         'p',
                         null,
                         'Please wait...'
                     ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'rect1' }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'rect2' }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'rect3' }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'rect4' }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'rect5' })
+                    React.createElement('div', { className: 'rect1' }),
+                    React.createElement('div', { className: 'rect2' }),
+                    React.createElement('div', { className: 'rect3' }),
+                    React.createElement('div', { className: 'rect4' }),
+                    React.createElement('div', { className: 'rect5' })
                 )
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement(
                 'h2',
                 { className: 'videos-section-title' },
                 'Buy music licence'
             ),
-            videos.map(v => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            videos.map(v => React.createElement(
                 'div',
                 { className: 'video-container', key: v.youtube_id },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                React.createElement(
                     'h1',
                     null,
                     v.title
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('iframe', {
+                React.createElement('iframe', {
                     width: '853',
                     height: '480',
                     src: 'https://www.youtube.com/embed/' + v.youtube_id,
                     frameBorder: '0',
                     allowFullScreen: 'true'
                 }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                React.createElement(
                     'button',
                     { className: 'black', onClick: () => this.buyLicense(v.isrc) },
                     'Buy license'
                 )
             )),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement('hr', null),
+            React.createElement(
                 'h3',
                 { className: 'videos-section-title' },
                 'License blockchain info'
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement(
                 'p',
                 null,
                 'Ethereum Kovan Block Hash: ',
                 this.state.license_block ? this.state.license_block.block_hash : 'N.D.'
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement(
                 'p',
                 null,
                 'Ethereum Kovan Transaction Hash:',
                 ' ',
-                this.state.license_block ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                this.state.license_block ? React.createElement(
                     'a',
                     { href: 'https://kovan.etherscan.io/tx/' + this.state.license_block.tx_hash, target: '_blank' },
                     'this.state.license_block.tx_hash'
                 ) : 'N.D.'
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement('hr', null),
+            React.createElement(
                 'h2',
                 { className: 'videos-section-title' },
                 'Register licensed youtube video'
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement(
                 'p',
                 null,
                 'Youtube Video Link:'
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement(
                 'form',
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', onChange: e => this.setYoutubeLink(e) }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                React.createElement('input', { type: 'text', onChange: e => this.setYoutubeLink(e) }),
+                React.createElement(
                     'button',
                     { className: 'black', onClick: e => this.registerVideo(e) },
                     'Register video'
                 )
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement('hr', null),
+            React.createElement(
                 'h3',
                 { className: 'videos-section-title' },
                 'Video registration blockchain info'
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement(
                 'p',
                 null,
                 'Ethereum Kovan Block Hash:',
                 ' ',
                 this.state.registration_block ? this.state.registration_block.block_hash : 'N.D.'
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement(
                 'p',
                 null,
                 'Ethereum Kovan Transaction Hash:',
                 ' ',
-                this.state.registration_block ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                this.state.registration_block ? React.createElement(
                     'a',
                     {
                         href: 'https://kovan.etherscan.io/tx/' + this.state.registration_block.tx_hash,
@@ -28321,13 +28315,14 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                     'this.state.registration_block.tx_hash'
                 ) : 'N.D.'
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null)
+            React.createElement('br', null),
+            React.createElement('br', null)
         );
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = VideosList;
 
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/react/index.js")))
 
 /***/ }),
 
@@ -28386,7 +28381,8 @@ const loggerMiddleware = Object(__WEBPACK_IMPORTED_MODULE_3_redux_logger__["crea
 // Build the middleware for intercepting and dispatching navigation actions
 const historyMiddleware = Object(__WEBPACK_IMPORTED_MODULE_2_react_router_redux__["b" /* routerMiddleware */])(__WEBPACK_IMPORTED_MODULE_4_initialiser__["a" /* default */].history);
 
-const store = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["d" /* createStore */])(Object(__WEBPACK_IMPORTED_MODULE_0_redux__["c" /* combineReducers */])({/*MODULE_NAME*/
+const store = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["d" /* createStore */])(Object(__WEBPACK_IMPORTED_MODULE_0_redux__["c" /* combineReducers */])({
+    /*MODULE_NAME*/
 }), __WEBPACK_IMPORTED_MODULE_4_initialiser__["a" /* default */].initialState, Object(__WEBPACK_IMPORTED_MODULE_0_redux__["a" /* applyMiddleware */])(__WEBPACK_IMPORTED_MODULE_1_redux_thunk___default.a, loggerMiddleware, historyMiddleware));
 
 /* harmony default export */ __webpack_exports__["a"] = (store);
@@ -28401,20 +28397,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(React) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_dom__ = __webpack_require__("./node_modules/react-dom/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router__ = __webpack_require__("./node_modules/react-router/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router_redux__ = __webpack_require__("./node_modules/react-router-redux/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin__ = __webpack_require__("./node_modules/react-tap-event-plugin/src/injectTapEventPlugin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_initialiser__ = __webpack_require__("./src/initialiser.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_auth__ = __webpack_require__("./src/utils/auth.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_AuthenticationWrapper__ = __webpack_require__("./src/components/AuthenticationWrapper.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ducks_configureStore__ = __webpack_require__("./src/ducks/configureStore.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_normalize_css__ = __webpack_require__("./node_modules/normalize.css/normalize.css");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_normalize_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_normalize_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_scss_index_scss__ = __webpack_require__("./src/scss/index.scss");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_scss_index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_scss_index_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_redux__ = __webpack_require__("./node_modules/react-router-redux/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_tap_event_plugin__ = __webpack_require__("./node_modules/react-tap-event-plugin/src/injectTapEventPlugin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_tap_event_plugin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_tap_event_plugin__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_initialiser__ = __webpack_require__("./src/initialiser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_AuthenticationWrapper__ = __webpack_require__("./src/components/AuthenticationWrapper.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ducks_configureStore__ = __webpack_require__("./src/ducks/configureStore.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_normalize_css__ = __webpack_require__("./node_modules/normalize.css/normalize.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_normalize_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_normalize_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_scss_index_scss__ = __webpack_require__("./src/scss/index.scss");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_scss_index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_scss_index_scss__);
 /* eslint react/prop-types: 0 */
-
 
 
 
@@ -28428,19 +28421,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
-__WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin___default()();
+__WEBPACK_IMPORTED_MODULE_3_react_tap_event_plugin___default()();
 
 // Listen to history changes
-const history = __WEBPACK_IMPORTED_MODULE_5_initialiser__["a" /* default */].history;
+const history = __WEBPACK_IMPORTED_MODULE_4_initialiser__["a" /* default */].history;
 history.listen(location => {
+    console.log(location);
     // Collect activity with google analytics
     // ReactGA.pageview(location.pathname + location.search);
-});
-
-const mapStateToProps = state => ({
-    user: state.user,
-    fetching: state.fetching
 });
 
 // const renderRedirect = props => {
@@ -28465,24 +28453,6 @@ const mapStateToProps = state => ({
 //         />
 //     );
 // };
-
-function updateSigninStatus(isSignedIn) {
-    console.log(isSignedIn);
-
-    console.log('GOT CALLEd');
-
-    // if (isSignedIn) {
-    //     // isAuthorized = true;
-    //     // if (currentApiRequest) {
-    //     //     sendAuthorizedApiRequest(currentApiRequest);
-    //     // }
-    //     console.log('IN HERE');
-    //     location.href = '/';
-    //
-    // } else {
-    //     location.href = '/login';
-    // }
-}
 
 // const connectGoogle = () => {
 //     window.GoogleAuth; // Google Auth object.
@@ -28524,9 +28494,9 @@ function updateSigninStatus(isSignedIn) {
 
 __WEBPACK_IMPORTED_MODULE_0_react_dom___default.a.render(React.createElement(
     __WEBPACK_IMPORTED_MODULE_1_react_redux__["a" /* Provider */],
-    { store: __WEBPACK_IMPORTED_MODULE_8_ducks_configureStore__["a" /* default */] },
+    { store: __WEBPACK_IMPORTED_MODULE_6_ducks_configureStore__["a" /* default */] },
     React.createElement(
-        __WEBPACK_IMPORTED_MODULE_3_react_router_redux__["a" /* ConnectedRouter */],
+        __WEBPACK_IMPORTED_MODULE_2_react_router_redux__["a" /* ConnectedRouter */],
         { history: history },
         React.createElement(
             'div',
@@ -28534,7 +28504,7 @@ __WEBPACK_IMPORTED_MODULE_0_react_dom___default.a.render(React.createElement(
             React.createElement(
                 'div',
                 { className: 'view-container' },
-                React.createElement(__WEBPACK_IMPORTED_MODULE_7__components_AuthenticationWrapper__["a" /* default */], null)
+                React.createElement(__WEBPACK_IMPORTED_MODULE_5__components_AuthenticationWrapper__["a" /* default */], null)
             )
         )
     )
@@ -28549,8 +28519,6 @@ __WEBPACK_IMPORTED_MODULE_0_react_dom___default.a.render(React.createElement(
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_history_createBrowserHistory__ = __webpack_require__("./node_modules/history/createBrowserHistory.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_history_createBrowserHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_history_createBrowserHistory__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_utils_constants__ = __webpack_require__("./src/utils/constants.js");
-
 
 
 class Initialiser {
@@ -28570,7 +28538,7 @@ class Initialiser {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* WEBPACK VAR INJECTION */(function(React) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_header_header__ = __webpack_require__("./src/components/header/header.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_videoslist_videoslist__ = __webpack_require__("./src/components/videoslist/videoslist.js");
@@ -28580,10 +28548,6 @@ class Initialiser {
 
 
 class Home extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-    constructor() {
-        super();
-    }
-
     componentWillMount() {
         console.log('will mount');
     }
@@ -28594,16 +28558,17 @@ class Home extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
     render() {
         const { user } = this.props;
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        return React.createElement(
             'div',
             null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_header_header__["a" /* default */], { user: user }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_videoslist_videoslist__["a" /* default */], null)
+            React.createElement(__WEBPACK_IMPORTED_MODULE_1__components_header_header__["a" /* default */], { user: user }),
+            React.createElement(__WEBPACK_IMPORTED_MODULE_2__components_videoslist_videoslist__["a" /* default */], null)
         );
     }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Home);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/react/index.js")))
 
 /***/ }),
 
@@ -28611,7 +28576,7 @@ class Home extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* WEBPACK VAR INJECTION */(function(React) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_header_header__ = __webpack_require__("./src/components/header/header.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_scss__ = __webpack_require__("./src/scenes/login/login.scss");
@@ -28621,33 +28586,16 @@ class Home extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
 
 class Login extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-    constructor() {
-        super();
-    }
-
-    // static propTypes = {
-    //     onConfirm: PropTypes.func.isRequired,
-    //     onCancel: PropTypes.func.isRequired,
-    //     message: PropTypes.string.isRequired,
-    //     title: PropTypes.string.isRequired,
-    // };
-
-    // }
-    //
-    // componentDidMount() {
-    //
-    // }
-
     signIn() {
         window.GoogleAuth.signIn();
     }
 
     render() {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        return React.createElement(
             'div',
             null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_header_header__["a" /* default */], null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            React.createElement(__WEBPACK_IMPORTED_MODULE_1__components_header_header__["a" /* default */], null),
+            React.createElement(
                 'button',
                 { className: 'login-button', onClick: () => this.signIn() },
                 'Youtube Login'
@@ -28657,6 +28605,7 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Login);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/react/index.js")))
 
 /***/ }),
 
@@ -28803,16 +28752,6 @@ function isAuthenticated() {
 function getAuthHeader() {
     return 'Bearer ' + window.GoogleAuth.currentUser.get().Zi.access_token;
 }
-
-/***/ }),
-
-/***/ "./src/utils/constants.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const constants = {};
-
-/* unused harmony default export */ var _unused_webpack_default_export = (constants);
 
 /***/ })
 
