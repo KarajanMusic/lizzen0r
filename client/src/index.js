@@ -8,6 +8,9 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // import registerServiceWorker from 'registerServiceWorker';
 import Initialiser from 'initialiser';
 import { isAuthenticated, isAdmin } from './utils/auth';
+import Login from './components/Login';
+import Home from './components/Home';
+import Header from './components/Header';
 import store from 'ducks/configureStore';
 import 'normalize.css';
 import 'scss/index.scss';
@@ -18,7 +21,7 @@ injectTapEventPlugin();
 const history = Initialiser.history;
 history.listen(location => {
     // Collect activity with google analytics
-    ReactGA.pageview(location.pathname + location.search);
+    // ReactGA.pageview(location.pathname + location.search);
 });
 
 const mapStateToProps = state => ({
@@ -34,7 +37,7 @@ const renderRedirect = props => {
             return <Component {...props} />;
         }
         // user object is being fetched
-        return <Loader />;
+        return <p>Loading ...</p>;
     }
     // unauthenticated, redirect to login
     return (
@@ -57,14 +60,14 @@ ReactDOM.render(
             <div>
                 <Route path="/" render={() => isAuthenticated() && <Header />} />
                 <div className="view-container">
-                    <Loader />
+                    <p>Loading ...</p>
                     <Switch>
                         <Route exact path="/login" component={Login} />
                         <PrivateRoute exact path="/" component={Home} />
                         <PrivateRoute component={() => <h1>404 - Not Found</h1>} />
                     </Switch>
                 </div>
-                <Toaster />
+                {/*<Toaster />*/}
             </div>
         </ConnectedRouter>
     </Provider>,

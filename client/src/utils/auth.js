@@ -1,2 +1,2 @@
-export const isAdmin = true;
-export const isAuthenticated = true;
+export const isAdmin = false;
+export function isAuthenticated () { return false };
