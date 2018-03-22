@@ -85,8 +85,6 @@ class AuthenticationWrapper extends Component {
         //
         return (
             <div className="">
-                {JSON.stringify(this.state.user)}
-
                 {user ? (
                     <Switch>
                         <Route exact path="/" render={() => <Home user={user} />} />

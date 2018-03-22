@@ -1672,7 +1672,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".video-container {\n  width: calc(33% - 20px);\n  margin: 10px;\n  padding-bottom: calc(15% - 20px);\n  height: 0;\n  display: inline-block;\n  overflow: hidden; }\n  .video-container iframe,\n  .video-container object,\n  .video-container embed {\n    position: absolute;\n    top: 20px;\n    left: 0;\n    width: 100%;\n    height: 100%; }\n", ""]);
 
 // exports
 
@@ -27988,7 +27988,6 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: '' },
-            JSON.stringify(this.state.user),
             user ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_1_react_router__["c" /* Switch */],
                 null,
@@ -28108,23 +28107,20 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.state = {
             videos: null
         };
-        this.getVideos();
+        //this.getVideos = this.getVideos.bind(this);
     }
 
     componentDidMount() {
-        // console.log(window.GoogleAuth.isSignedIn.get());
-        console.log('MOUNTED');
-        console.log(this.props);
+        // console.log(window.GoogleAuth.isSignedIn.get())
+        this.getVideos(this);
     }
 
-    getVideos() {
-        var _this = this;
-
+    getVideos(that) {
         return _asyncToGenerator(function* () {
             try {
                 const videos = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].getVideos();
                 console.log(videos);
-                _this.setState({ videos });
+                that.setState({ videos });
             } catch (err) {
                 console.error(err);
             }
@@ -28133,11 +28129,17 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
     render() {
         const { videos } = this.state;
-        return videos ? videos.map(v => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            JSON.stringify(v)
-        )) : 'Loading videos...';
+        return !videos ? 'Loading videos...' : videos.map(v => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'video-container', key: v.youtube_id },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('iframe', {
+                width: '853',
+                height: '480',
+                src: 'https://www.youtube.com/embed/' + v.youtube_id,
+                frameBorder: '0',
+                allowFullScreen: 'true'
+            })
+        ));
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = VideosList;
@@ -28565,7 +28567,7 @@ class API {
             headers: Object.assign(this.headers, {
                 Authorization: Object(__WEBPACK_IMPORTED_MODULE_1__auth__["a" /* getAuthHeader */])()
             })
-        }).then(response => response.data.payload).catch(error => {
+        }).then(response => response.data).catch(error => {
             throw error.response;
         });
     }

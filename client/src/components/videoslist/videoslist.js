@@ -11,20 +11,19 @@ export default class VideosList extends Component {
         this.state = {
             videos: null,
         };
-        this.getVideos();
+        //this.getVideos = this.getVideos.bind(this);
     }
 
     componentDidMount() {
-        // console.log(window.GoogleAuth.isSignedIn.get());
-        console.log('MOUNTED');
-        console.log(this.props);
+        // console.log(window.GoogleAuth.isSignedIn.get())
+        this.getVideos(this);
     }
 
-    async getVideos() {
+    async getVideos(that) {
         try {
             const videos = await api.getVideos();
             console.log(videos);
-            this.setState({ videos });
+            that.setState({ videos });
         } catch (err) {
             console.error(err);
         }
@@ -32,6 +31,18 @@ export default class VideosList extends Component {
 
     render() {
         const { videos } = this.state;
-        return videos ? videos.map(v => <li>{JSON.stringify(v)}</li>) : 'Loading videos...';
+        return !videos
+            ? 'Loading videos...'
+            : videos.map(v => (
+                  <div className="video-container" key={v.youtube_id}>
+                      <iframe
+                          width="853"
+                          height="480"
+                          src={'https://www.youtube.com/embed/' + v.youtube_id}
+                          frameBorder="0"
+                          allowFullScreen="true"
+                      />
+                  </div>
+              ));
     }
 }
