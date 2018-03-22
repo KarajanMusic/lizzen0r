@@ -10,7 +10,7 @@ module.exports = function(app) {
         next();
     });
 
-    app.use(checkYoutubeToken);
+    app.use('/api/*', checkYoutubeToken);
 
     app.use('/api/users', require('./users')());
     app.use('/api/videos', require('./videos')());
