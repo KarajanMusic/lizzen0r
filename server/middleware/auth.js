@@ -9,7 +9,7 @@ const oauth2Client = new OAuth2(
     process.env.YOUR_REDIRECT_URL, // TODO:
 );
 
-const scopes = ['https://www.googleapis.com/auth/youtube'];
+// const scopes = ['https://www.googleapis.com/auth/youtube'];
 
 // const url = oauth2Client.generateAuthUrl({
 //     access_type: 'offline',

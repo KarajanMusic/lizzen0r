@@ -45,6 +45,7 @@ module.exports = {
     async registerLicensedVideo(req, res) {
         try {
             if (!req.body.link || !req.body.license_id) {
+                console.log('BadRequest!', req.body.link, req.body.license_id);
                 return Response.BadRequest().send(res);
             }
             console.log(req.body.link)
@@ -63,7 +64,7 @@ module.exports = {
                 licenseId,
                 userId,
             });
-            return Response.OK(result).send(res);
+            return Response.OK({ result }).send(res);
         } catch (err) {
             console.log('ERROR', err);
             return Response.BadRequest(err).send(err);
