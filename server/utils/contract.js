@@ -144,7 +144,9 @@ class Contract {
     async read(functionName, args) {
         args = this.transformInputArgs(functionName, args);
         // read from the runtime net
-        const web3MainNet = new web3(new web3.providers.HttpProvider(constants.networks[process.env.ETHEREUM_NETWORK].endpoint));
+        const web3MainNet = new web3(
+            new web3.providers.HttpProvider(constants.networks[process.env.ETHEREUM_NETWORK].endpoint),
+        );
         const contract = new web3MainNet.eth.Contract(this.source.abi, this.address);
         logger.info(`[READ] Calling ${functionName} on contract ${this.source.contractName}`.blue);
         const result = await contract.methods[functionName](...args).call({

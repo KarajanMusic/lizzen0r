@@ -1,10 +1,11 @@
 
 require('colors');
 const contracts = require('../server/contracts')();
+const data = require('../server/data/index');
 
 (async function() {
     // WRITE ISRCs
-    const args = { _isrcs: ['ATRG71515025', 'ATRG71515022'] };
+    const args = { isrcs_: data.videos.map(recording => recording.isrc) };
 
     try {
         await contracts.lizzenz0r.validateCall('addISRCs', args);

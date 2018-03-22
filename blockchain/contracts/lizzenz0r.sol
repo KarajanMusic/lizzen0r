@@ -4,8 +4,25 @@ contract lizzenz0r {
 
     address private owner;
 
-    enum licenseTemplate {Lizzenz0rSoundSupplyLicense} // contains licensenames
-    bytes24[] isrcs; // contains all available Songs by ISRC
+    bytes12[] isrcs;
+
+    struct License {
+        uint userId;
+        bytes12 isrc;
+        uint start;
+        uint end;
+    }
+
+    // licenseId => license
+    mapping(uint => License) issuedLicenses;
+
+    // userId => licenseIds
+    mapping(uint => uint) userLicenses;
+
+    // videoId => licenseId
+    mapping(string => uint) videoRegistrations;
+
+    uint numIssuedLicenses;
 
     modifier onlyOwner {
         require(msg.sender == owner);
@@ -16,11 +33,32 @@ contract lizzenz0r {
         owner = owner_;
     }
 
-    function addISRCs(bytes24[] _isrcs) public onlyOwner {
-        isrcs = _isrcs;
+    function setISRCs(bytes12[] isrcs_) public onlyOwner {
+        isrcs = isrcs_;
     }
 
-    function getISRCs() public returns (bytes24[]) {
+    function registerLicensePurchase(uint userId, bytes12 isrc, uint startTime, uint endTime) public onlyOwner returns (uint licenseId) {
+        require(endTime > startTime);
+
+        licenseId = numIssuedLicenses++;
+        issuedLicenses[licenseId] = License(userId, isrc, startTime, endTime);
+        userLicenses[userId] = licenseId;
+    }
+
+    function registerVideo(string ytId, uint licenseId, uint userId) public onlyOwner {
+        require(userLicenses[userId] != 0); // ensure user has a license
+
+        videoRegistrations[ytId] = licenseId;
+    }
+
+    function getLicenseOnVideo(string ytId) public constant returns (uint, bytes12, uint, uint) {
+        require(videoRegistrations[ytId] != 0);
+
+        uint lId = videoRegistrations[ytId];        
+        return (issuedLicenses[lId].userId, issuedLicenses[lId].isrc, issuedLicenses[lId].start, issuedLicenses[lId].end);
+    }
+
+    function getISRCs() public constant returns (bytes12[]) {
         return isrcs;
     }
 

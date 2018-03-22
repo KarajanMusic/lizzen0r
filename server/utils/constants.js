@@ -1,8 +1,8 @@
 module.exports = {
-  networks: {
-    kovan: {
-      name: "kovan",
-      endpoint: "http://localhost:8545"
-    }
-  }
+    networks: {
+        kovan: {
+            name: 'kovan',
+            endpoint: 'http://localhost:8545',
+        },
+    },
 };

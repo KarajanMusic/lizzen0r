@@ -3,12 +3,12 @@ const web3 = require('web3');
 const validator = require('../utils/validator');
 
 module.exports = {
-    addISRCs: {
+    setISRCs: {
         inputs: {
-            _isrcs: {
+            isrcs_: {
                 validate: Joi.array()
-                .min(1)
-                .items(validator.schemas.isrc.required()),
+                    .min(1)
+                    .items(validator.schemas.isrc.required()),
                 transform: values => values.map(value => web3.utils.padLeft(web3.utils.toHex(value), 24)),
             },
         },
@@ -18,8 +18,63 @@ module.exports = {
         inputs: {},
         outputs: {
             '': {
-                transform: value => web3.utils.hexToAscii(value),
+                transform: values => values.map(value => web3.utils.hexToAscii(value)),
             },
         },
     },
+    registerLicensePurchase: {
+        inputs: {
+            userId: {
+                validate: validator.schemas.userId.required(),
+                transform: value => value,
+            },
+            isrc: {
+                validate: validator.schemas.isrc.required(),
+                transform: value => web3.utils.padLeft(web3.utils.toHex(value), 24),
+            },
+            startTime: {
+                validate: Joi.number().positive(),
+                transform: value => value, 
+            },
+            endTime: {
+                validate: Joi.number().positive(),
+                transform: value => value,
+            }
+        },
+        outputs: {
+            licenseId: {
+                validate: validator.schemas.licenseId.required(),
+                transform: value => value,
+            }
+        }
+    },
+    registerVideo: {
+        inputs: {
+            ytId: {
+                validate: validator.schemas.youtubeId.required(),
+                transform: value => value,
+            },
+            licenseId: {
+                validate: validator.schemas.licenseId.required(),
+                transform: value => value,
+            },
+            userId: {
+                validate: validator.schemas.userId.required(),
+                transform: value => value,
+            },
+        },
+        outputs: {
+
+        }
+    },
+    getLicenseOnVideo: {
+        inputs: {
+            ytId: {
+                validate: validator.schemas.youtubeId.required(),
+            }
+        },
+        outputs: {
+            // TODO four values
+        }
+    }
 };

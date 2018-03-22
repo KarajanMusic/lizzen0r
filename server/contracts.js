@@ -8,7 +8,7 @@ module.exports = function() {
     for (const filename of filenames) {
         contracts[filename.replace('.json', '')] = new Contract(filename, process.env.CONTRACT_ADDRESS, {
             address: process.env.OWNER_ADDRESS,
-            password: process.env.OWNER_PASSWORD
+            password: process.env.OWNER_PASSWORD,
         });
     }
     return contracts;

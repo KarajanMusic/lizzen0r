@@ -4,12 +4,12 @@ const config = require('../config').redis;
 
 const client = redis.createClient(config.port, config.host);
 
-client.on('connect', function(err) {
+client.on('connect', err => {
     logger.info('[REDIS] Connected');
 });
 
 // handle redis connection temporarily going down without app crashing
-client.on('error', function(err) {
+client.on('error', err => {
     logger.error('[REDIS] Error:', err);
 });
 

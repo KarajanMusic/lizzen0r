@@ -14,5 +14,8 @@ module.exports = {
         isrc: Joi.string().regex(/^[A-Z0-9]{12}$/),
         hash: Joi.string().regex(/^[0-9A-Za-z]{32}$/),
         id: Joi.number().positive(),
+        userId: Joi.numer().positive(),
+        licenseId: Joi.number().positive(),
+        youtubeId: Joi.string(),
     },
 };
