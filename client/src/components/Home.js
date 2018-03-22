@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Header from './Header';
+
 class Home extends Component {
     // static propTypes = {
     //     onConfirm: PropTypes.func.isRequired,
@@ -8,10 +10,25 @@ class Home extends Component {
     //     title: PropTypes.string.isRequired,
     // };
 
+    constructor() {
+        super();
+    }
+
+    componentWillMount() {
+        console.log('will mount');
+    }
+
+    componentDidMount() {
+        console.log('MOUNTED');
+    }
+
     render() {
+        const { user } = this.props;
         return (
             <div>
-                Home Screen
+                <Header user={user} />
+                Home Screen .......
+                asd
             </div>
         );
     }

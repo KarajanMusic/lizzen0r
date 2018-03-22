@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Header from './Header';
+import './Login.scss';
 
 class Login extends Component {
 
@@ -28,7 +30,8 @@ class Login extends Component {
     render() {
         return (
             <div>
-               <button onClick={() => this.signIn()}>Youtube Login</button>
+                <Header />
+               <button className="login-button" onClick={() => this.signIn()}>Youtube Login</button>
             </div>
         );
     }

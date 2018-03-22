@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 
+import './Header.scss';
+
 class Header extends Component {
-    // static propTypes = {
-    //     onConfirm: PropTypes.func.isRequired,
-    //     onCancel: PropTypes.func.isRequired,
-    //     message: PropTypes.string.isRequired,
-    //     title: PropTypes.string.isRequired,
-    // };
+
+    constructor() {
+        super();
+    }
+
+    componentDidMount() {
+        // console.log(window.GoogleAuth.isSignedIn.get());
+        console.log('MOUNTED');
+        console.log(this.props);
+    }
 
     render() {
         return (
-            <div>
-                Header Screen
+            <div className="global-header">
+                <p>lizzenz03</p>
             </div>
         );
     }
