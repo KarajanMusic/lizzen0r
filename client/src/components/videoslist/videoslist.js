@@ -11,23 +11,24 @@ export default class VideosList extends Component {
         this.state = {
             videos: null,
         };
-        //this.getVideos = this.getVideos.bind(this);
+        this.getVideos = this.getVideos.bind(this);
     }
 
     componentDidMount() {
         // console.log(window.GoogleAuth.isSignedIn.get())
-        this.getVideos(this);
+        this.getVideos();
     }
 
-    async getVideos(that) {
+    async getVideos() {
         try {
             const videos = await api.getVideos();
-            console.log(videos);
-            that.setState({ videos });
+            this.setState({ videos });
         } catch (err) {
             console.error(err);
         }
     }
+
+    async buyLicence() {}
 
     render() {
         const { videos } = this.state;
@@ -35,6 +36,7 @@ export default class VideosList extends Component {
             ? 'Loading videos...'
             : videos.map(v => (
                   <div className="video-container" key={v.youtube_id}>
+                      <h1>{v.title}</h1>
                       <iframe
                           width="853"
                           height="480"
@@ -42,6 +44,7 @@ export default class VideosList extends Component {
                           frameBorder="0"
                           allowFullScreen="true"
                       />
+                      <button onClick={() => this.buyLicence()}>Buy licence</button>
                   </div>
               ));
     }
