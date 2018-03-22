@@ -3,17 +3,9 @@ const logger = require('winston');
 const _configs = {
     _globals: {
         port: 3000,
-        redis: {
-            host: '127.0.0.1',
-            port: 6379,
-        },
     },
-    development: {
-        redis: {},
-    },
-    produdction: {
-        redis: {},
-    },
+    development: {},
+    produdction: {},
 };
 
 const env = process.env.NODE_ENV || 'development';
