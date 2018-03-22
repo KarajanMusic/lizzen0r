@@ -44,6 +44,9 @@ module.exports = {
     },
     async registerLicensedVideo(req, res) {
         try {
+            if (!req.body.link || !req.body.license_id) {
+                return Response.BadRequest().send(res);
+            }
             console.log(req.body.link)
             const videoData = {
                 youtube_id: await _getYoutubeID(req.body.link),
