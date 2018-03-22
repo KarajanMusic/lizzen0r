@@ -7,3 +7,4 @@ build/
 .idea/vcs.xml
 .env
 client/dist
+.vscode

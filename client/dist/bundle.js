@@ -81,9 +81,17 @@ exports.push([module.i, "/*! normalize.css v7.0.0 | MIT License | github.com/nec
 /***/ }),
 
 /***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/scss/index.scss":
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: \n    font-size: $text-h1-size;\n              ^\n      Undefined variable: \"$text-h1-size\".\n      in /Users/lucazambarda/Repositories/lizzenz0r/client/src/scss/index.scss (line 25, column 16)");
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Hind:100,200,300,400,500,600,700);", ""]);
+
+// module
+exports.push([module.i, "html, body {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n  html > #root, body > #root {\n    width: 100%;\n    height: 100%; }\n    html > #root > div, body > #root > div {\n      width: 100%;\n      height: 100%; }\n\n.__react_component_tooltip.show {\n  opacity: 1 !important; }\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -26279,14 +26287,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router_redux__ = __webpack_require__("./node_modules/react-router-redux/es/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin__ = __webpack_require__("./node_modules/react-tap-event-plugin/src/injectTapEventPlugin.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin__);
-throw new Error("Cannot find module \"registerServiceWorker\"");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_initialiser__ = __webpack_require__("./src/initialiser.js");
-throw new Error("Cannot find module \"./utils/auth\"");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ducks_configureStore__ = __webpack_require__("./src/ducks/configureStore.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_normalize_css__ = __webpack_require__("./node_modules/normalize.css/normalize.css");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_normalize_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_normalize_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_scss_index_scss__ = __webpack_require__("./src/scss/index.scss");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_scss_index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_scss_index_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_initialiser__ = __webpack_require__("./src/initialiser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_auth__ = __webpack_require__("./src/utils/auth.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ducks_configureStore__ = __webpack_require__("./src/ducks/configureStore.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_normalize_css__ = __webpack_require__("./node_modules/normalize.css/normalize.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_normalize_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_normalize_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_scss_index_scss__ = __webpack_require__("./src/scss/index.scss");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_scss_index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_scss_index_scss__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -26298,7 +26305,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 
 
-
+// import registerServiceWorker from 'registerServiceWorker';
 
 
 
@@ -26308,7 +26315,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 __WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin___default()();
 
 // Listen to history changes
-const history = __WEBPACK_IMPORTED_MODULE_6_initialiser__["a" /* default */].history;
+const history = __WEBPACK_IMPORTED_MODULE_5_initialiser__["a" /* default */].history;
 history.listen(location => {
     // Collect activity with google analytics
     ReactGA.pageview(location.pathname + location.search);
@@ -26320,7 +26327,7 @@ const mapStateToProps = state => ({
 });
 
 const renderRedirect = props => {
-    if (Object(__WEBPACK_IMPORTED_MODULE_7__utils_auth__["isAuthenticated"])()) {
+    if (Object(__WEBPACK_IMPORTED_MODULE_6__utils_auth__["a" /* isAuthenticated */])()) {
         if (props.fetching.indexOf('user') === -1) {
             // Else, safe to render component
             const { Component } = props;
@@ -26347,14 +26354,14 @@ const PrivateRoute = Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* con
 
 __WEBPACK_IMPORTED_MODULE_0_react_dom___default.a.render(React.createElement(
     __WEBPACK_IMPORTED_MODULE_1_react_redux__["a" /* Provider */],
-    { store: __WEBPACK_IMPORTED_MODULE_8_ducks_configureStore__["a" /* default */] },
+    { store: __WEBPACK_IMPORTED_MODULE_7_ducks_configureStore__["a" /* default */] },
     React.createElement(
         __WEBPACK_IMPORTED_MODULE_3_react_router_redux__["a" /* ConnectedRouter */],
         { history: history },
         React.createElement(
             'div',
             null,
-            React.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* Route */], { path: '/', render: () => Object(__WEBPACK_IMPORTED_MODULE_7__utils_auth__["isAuthenticated"])() && React.createElement(Header, null) }),
+            React.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* Route */], { path: '/', render: () => Object(__WEBPACK_IMPORTED_MODULE_6__utils_auth__["a" /* isAuthenticated */])() && React.createElement(Header, null) }),
             React.createElement(
                 'div',
                 { className: 'view-container' },
@@ -26431,6 +26438,19 @@ if(false) {
 	// When the module is disposed, remove the <style> tags
 	module.hot.dispose(function() { update(); });
 }
+
+/***/ }),
+
+/***/ "./src/utils/auth.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const isAdmin = true;
+/* unused harmony export isAdmin */
+
+const isAuthenticated = true;
+/* harmony export (immutable) */ __webpack_exports__["a"] = isAuthenticated;
+
 
 /***/ }),
 
