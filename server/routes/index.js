@@ -16,6 +16,8 @@ module.exports = function(app) {
 
     app.use(checkYoutubeToken);
 
+    app.use('/api/users', require('./users')());
+
     app.use('/api/redbull', require('./redbull')());
 
     app.get('/api/videos', VideosController.getVideos);
