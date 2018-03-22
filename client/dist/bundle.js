@@ -26245,6 +26245,113 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
+/***/ "./src/components/Header.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+class Header extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+    // static propTypes = {
+    //     onConfirm: PropTypes.func.isRequired,
+    //     onCancel: PropTypes.func.isRequired,
+    //     message: PropTypes.string.isRequired,
+    //     title: PropTypes.string.isRequired,
+    // };
+
+    render() {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            null,
+            'Header Screen'
+        );
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Header);
+
+/***/ }),
+
+/***/ "./src/components/Home.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+class Home extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+    // static propTypes = {
+    //     onConfirm: PropTypes.func.isRequired,
+    //     onCancel: PropTypes.func.isRequired,
+    //     message: PropTypes.string.isRequired,
+    //     title: PropTypes.string.isRequired,
+    // };
+
+    render() {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            null,
+            'Home Screen'
+        );
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Home);
+
+/***/ }),
+
+/***/ "./src/components/Login.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+class Login extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+
+    constructor() {
+        super();
+    }
+
+    // static propTypes = {
+    //     onConfirm: PropTypes.func.isRequired,
+    //     onCancel: PropTypes.func.isRequired,
+    //     message: PropTypes.string.isRequired,
+    //     title: PropTypes.string.isRequired,
+    // };
+
+
+    // }
+    //
+    // componentDidMount() {
+    //
+    // }
+
+    signIn() {
+        window.GoogleAuth.signIn();
+    }
+
+    render() {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'button',
+                { onClick: () => this.signIn() },
+                'Youtube Login'
+            )
+        );
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Login);
+
+/***/ }),
+
 /***/ "./src/ducks/configureStore.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -26289,11 +26396,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_initialiser__ = __webpack_require__("./src/initialiser.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_auth__ = __webpack_require__("./src/utils/auth.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ducks_configureStore__ = __webpack_require__("./src/ducks/configureStore.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_normalize_css__ = __webpack_require__("./node_modules/normalize.css/normalize.css");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_normalize_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_normalize_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_scss_index_scss__ = __webpack_require__("./src/scss/index.scss");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_scss_index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_scss_index_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Login__ = __webpack_require__("./src/components/Login.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Home__ = __webpack_require__("./src/components/Home.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Header__ = __webpack_require__("./src/components/Header.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ducks_configureStore__ = __webpack_require__("./src/ducks/configureStore.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_normalize_css__ = __webpack_require__("./node_modules/normalize.css/normalize.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_normalize_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_normalize_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_scss_index_scss__ = __webpack_require__("./src/scss/index.scss");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_scss_index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_scss_index_scss__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -26312,13 +26422,16 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 
 
+
+
+
 __WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin___default()();
 
 // Listen to history changes
 const history = __WEBPACK_IMPORTED_MODULE_5_initialiser__["a" /* default */].history;
 history.listen(location => {
     // Collect activity with google analytics
-    ReactGA.pageview(location.pathname + location.search);
+    // ReactGA.pageview(location.pathname + location.search);
 });
 
 const mapStateToProps = state => ({
@@ -26334,7 +26447,11 @@ const renderRedirect = props => {
             return React.createElement(Component, props);
         }
         // user object is being fetched
-        return React.createElement(Loader, null);
+        return React.createElement(
+            'p',
+            null,
+            'Loading ...'
+        );
     }
     // unauthenticated, redirect to login
     return React.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["a" /* Redirect */], {
@@ -26343,6 +26460,74 @@ const renderRedirect = props => {
             state: { from: props.location }
         }
     });
+};
+
+/**
+ * Listener called when user completes auth flow. If the currentApiRequest
+ * variable is set, then the user was prompted to authorize the application
+ * before the request executed. In that case, proceed with that API request.
+ */
+function updateSigninStatus(isSignedIn) {
+
+    console.log(isSignedIn);
+
+    if (isSignedIn) {
+        isAuthorized = true;
+        // if (currentApiRequest) {
+        //     sendAuthorizedApiRequest(currentApiRequest);
+        // }
+    } else {
+        isAuthorized = false;
+    }
+}
+
+const googleConnect = () => {
+    window.GoogleAuth; // Google Auth object.
+
+    function start() {
+        gapi.client.init({
+            'apiKey': 'AIzaSyAysq3hq5e6seJFkcyoun3s2-5HIRKCNgU',
+            'clientId': '1038963969656-a60janj4qrlnkv9mi1l8dp6tup0fgboq.apps.googleusercontent.com',
+            'scope': 'https://www.googleapis.com/auth/youtube',
+            'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest']
+        }).then(function () {
+            window.GoogleAuth = gapi.auth2.getAuthInstance();
+            console.log(GoogleAuth);
+            console.log(GoogleAuth.isSignedIn);
+            console.log(window.GoogleAuth.isSignedIn.get());
+            console.log(window.GoogleAuth.currentUser.get());
+            console.log(GoogleAuth.getInitialScopes());
+
+            // GoogleAuth.signIn();
+
+            // Listen for sign-in state changes.
+            window.GoogleAuth.isSignedIn.listen(updateSigninStatus);
+        });
+    }
+    gapi.load('client', start);
+
+    // function start() {
+    //     // 2. Initialize the JavaScript client library.
+    //     gapi.client.init({
+    //         'apiKey': 'YOUR_API_KEY',
+    //         // Your API key will be automatically added to the Discovery Document URLs.
+    //         'discoveryDocs': ['https://people.googleapis.com/$discovery/rest'],
+    //         // clientId and scope are optional if auth is not required.
+    //         'clientId': 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com',
+    //         'scope': 'profile',
+    //     }).then(function() {
+    //         // 3. Initialize and make the API request.
+    //         return gapi.client.people.people.get({
+    //             'resourceName': 'people/me',
+    //             'requestMask.includeField': 'person.names'
+    //         });
+    //     }).then(function(response) {
+    //         console.log(response.result);
+    //     }, function(reason) {
+    //         console.log('Error: ' + reason.result.error.message);
+    //     });
+    // };
+    // 1. Load the JavaScript client library.
 };
 
 const PrivateRoute = Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapStateToProps, null)((_ref) => {
@@ -26354,31 +26539,35 @@ const PrivateRoute = Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* con
 
 __WEBPACK_IMPORTED_MODULE_0_react_dom___default.a.render(React.createElement(
     __WEBPACK_IMPORTED_MODULE_1_react_redux__["a" /* Provider */],
-    { store: __WEBPACK_IMPORTED_MODULE_7_ducks_configureStore__["a" /* default */] },
+    { store: __WEBPACK_IMPORTED_MODULE_10_ducks_configureStore__["a" /* default */] },
     React.createElement(
         __WEBPACK_IMPORTED_MODULE_3_react_router_redux__["a" /* ConnectedRouter */],
         { history: history },
         React.createElement(
             'div',
             null,
-            React.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* Route */], { path: '/', render: () => Object(__WEBPACK_IMPORTED_MODULE_6__utils_auth__["a" /* isAuthenticated */])() && React.createElement(Header, null) }),
+            googleConnect(),
+            React.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* Route */], { path: '/', render: () => Object(__WEBPACK_IMPORTED_MODULE_6__utils_auth__["a" /* isAuthenticated */])() && React.createElement(__WEBPACK_IMPORTED_MODULE_9__components_Header__["a" /* default */], null) }),
             React.createElement(
                 'div',
                 { className: 'view-container' },
-                React.createElement(Loader, null),
+                React.createElement(
+                    'p',
+                    null,
+                    'Loading ...'
+                ),
                 React.createElement(
                     __WEBPACK_IMPORTED_MODULE_2_react_router__["d" /* Switch */],
                     null,
-                    React.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* Route */], { exact: true, path: '/login', component: Login }),
-                    React.createElement(PrivateRoute, { exact: true, path: '/', component: Home }),
+                    React.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["b" /* Route */], { exact: true, path: '/login', component: __WEBPACK_IMPORTED_MODULE_7__components_Login__["a" /* default */] }),
+                    React.createElement(PrivateRoute, { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_8__components_Home__["a" /* default */] }),
                     React.createElement(PrivateRoute, { component: () => React.createElement(
                             'h1',
                             null,
                             '404 - Not Found'
                         ) })
                 )
-            ),
-            React.createElement(Toaster, null)
+            )
         )
     )
 ), document.getElementById('root'));
@@ -26445,12 +26634,13 @@ if(false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-const isAdmin = true;
+/* harmony export (immutable) */ __webpack_exports__["a"] = isAuthenticated;
+const isAdmin = false;
 /* unused harmony export isAdmin */
 
-const isAuthenticated = true;
-/* harmony export (immutable) */ __webpack_exports__["a"] = isAuthenticated;
-
+function isAuthenticated() {
+  return false;
+};
 
 /***/ }),
 

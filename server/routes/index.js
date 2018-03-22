@@ -1,7 +1,4 @@
 const checkYoutubeToken = require('../middleware/auth').checkYoutubeToken;
-/*router.get('handle_youtube_callback', async function(ctx, next) {
-  ctx.redirect(`app://code/${encodeURIComponent(ctx.query.code)}`)
-});*/
 
 module.exports = function(app, contracts) {
     // Add headers
@@ -13,11 +10,9 @@ module.exports = function(app, contracts) {
         next();
     });
 
-    app.use(checkYoutubeToken);
+    app.use('/api/*', checkYoutubeToken);
 
+    app.use('/api/users', require('./users')());
+    app.use('/api/videos', require('./videos')());
     app.use('/api/redbull', require('./redbull')());
-
-    app.get('/api/videos', (req, res) => {
-        return Response.OK();
-    });
 };
