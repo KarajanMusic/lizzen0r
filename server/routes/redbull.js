@@ -1,5 +1,4 @@
 const express = require('express');
-const logger = require('winston-color');
 const Response = require('../utils/response');
 const rp = require('request-promise');
 

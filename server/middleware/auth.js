@@ -1,4 +1,3 @@
-const logger = require('winston-color');
 const Response = require('../utils/response');
 const google = require('googleapis').google;
 const OAuth2 = google.auth.OAuth2;
@@ -12,10 +11,10 @@ const oauth2Client = new OAuth2(
 
 const scopes = ['https://www.googleapis.com/auth/youtube'];
 
-const url = oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: scopes,
-});
+// const url = oauth2Client.generateAuthUrl({
+//     access_type: 'offline',
+//     scope: scopes,
+// });
 
 module.exports = {
     checkYoutubeToken: (req, res, next) => {
@@ -27,7 +26,7 @@ module.exports = {
         if (!authToken) {
             return Response.Forbidden('Malformed authorization header').send(res);
         }
-        tokenVerifier.verify(authToken[1], process.env.YOUTUBE_CLIENT_ID, (err, tokenInfo) => {
+        tokenVerifier.verify(authToken[1], process.env.YOUTUBE_CLIENT_ID, (err /*tokenInfo*/) => {
             if (!err) {
                 return Response.InternalServerError('The token is invalid, what are you trying to do? è_é').send(res);
             }

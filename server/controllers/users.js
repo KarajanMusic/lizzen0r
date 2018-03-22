@@ -1,4 +1,4 @@
-const db = require('../db');
+const jsondb = require('../utils/jsondb');
 const Response = require('../utils/response');
 
 module.exports = {
@@ -6,19 +6,11 @@ module.exports = {
         if (!req.body.user) {
             return Response.BadRequest('Missing user object.').send(res);
         }
-        db.rpush(['users', JSON.stringify(req.body.user)], (err, reply) => {
-            if (err) {
-                return Response.InternalServerError(err).send(res);
-            }
-            return Response.OK().send(res);
-        });
+        jsondb.save('users', JSON.stringify(req.body.user));
+        return Response.OK().send(res);
     },
     getUsers(req, res) {
-        client.lrange('users', 0, -1, (err, reply) => {
-            if (err) {
-                return Response.InternalServerError(err).send(res);
-            }
-            return Response.OK(reply).send(res);
-        });
+        const result = jsondb.get('users');
+        return Response.OK(result).send(res);
     },
 };
