@@ -5,7 +5,7 @@ import { Provider, connect } from 'react-redux';
 import { Route, Redirect, Switch } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import registerServiceWorker from 'registerServiceWorker';
+// import registerServiceWorker from 'registerServiceWorker';
 import Initialiser from 'initialiser';
 import { isAuthenticated, isAdmin } from './utils/auth';
 import store from 'ducks/configureStore';
