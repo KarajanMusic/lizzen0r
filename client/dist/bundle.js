@@ -28169,7 +28169,7 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             if (!_this3.state.license_id) {
                 return alert('You need to buy a license first!');
             }
-
+            alert(JSON.stringify(_this3.state));
             try {
                 _this3.setState({ loading: true });
                 const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].registerVideo(_this3.getUserID(), _this3.state.link, _this3.state.license_id);
