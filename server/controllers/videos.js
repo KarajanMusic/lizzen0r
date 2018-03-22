@@ -24,21 +24,37 @@ module.exports = {
         const isrc = req.body.isrc;
         const startTime = nowTimestamp;
         const endTime = nowTimestamp + 5 * 60 * 1000;
+        console.log('LICENSING VIDEO... ', {
+            userId,
+            isrc,
+            startTime,
+            endTime
+        });
         const result = await req.contracts.lizzenz0r.write('registerLicensePurchase', {
             userId,
             isrc,
             startTime,
             endTime
         });
-        return Response.OK(result).send(res);
+        const licenseId = await req.contracts.lizzenz0r.read('getUserLicenseId', {
+            userId
+        });
+        console.log('LICENSE VIDEO read licenseId: ', licenseId);
+        return Response.OK({ result, licenseId }).send(res);
     },
     async registerLicensedVideo(req, res) {
         try {
+            console.log(req.body.link)
             const videoData = {
                 youtube_id: await _getYoutubeID(req.body.link),
             };
             const userId = req.body.user_id;
             const licenseId = req.body.license_id;
+            console.log('REGISTERING LICENSED VIDEO...', {
+                ytId: videoData.youtube_id,
+                licenseId,
+                userId,
+            });
             const result = await req.contracts.lizzenz0r.write('registerVideo', {
                 ytId: videoData.youtube_id,
                 licenseId,
@@ -46,6 +62,7 @@ module.exports = {
             });
             return Response.OK(result).send(res);
         } catch (err) {
+            console.log('ERROR', err);
             return Response.BadRequest(err).send(err);
         }
     },

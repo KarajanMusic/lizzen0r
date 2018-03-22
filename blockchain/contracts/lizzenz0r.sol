@@ -16,7 +16,7 @@ contract lizzenz0r {
     // licenseId => license
     mapping(uint => License) issuedLicenses;
 
-    // userId => licenseIds
+    // userId => licenseId
     mapping(uint => uint) userLicenses;
 
     // videoId => licenseId
@@ -49,6 +49,12 @@ contract lizzenz0r {
         require(userLicenses[userId] != 0); // ensure user has a license
 
         videoRegistrations[ytId] = licenseId;
+    }
+
+    function getUserLicenseId(uint userId) public constant returns (uint) {
+        require(userLicenses[userId] != 0);
+
+        return userLicenses[userId];
     }
 
     function getLicenseOnVideo(string ytId) public constant returns (uint userId, bytes12 isrc, uint start, uint end) {
