@@ -12,9 +12,6 @@ require('loadenv')();
 // const port_https = 8000;
 const app = express();
 
-// Set app config
-//app.set('backend', appConfig[ENV].backend);
-
 // Security
 app.use(helmet());
 

@@ -1,3 +1,4 @@
+const VideosController = require('../controllers/videos');
 const checkYoutubeToken = require('../middleware/auth').checkYoutubeToken;
 /*router.get('handle_youtube_callback', async function(ctx, next) {
   ctx.redirect(`app://code/${encodeURIComponent(ctx.query.code)}`)
@@ -17,7 +18,5 @@ module.exports = function(app) {
 
     app.use('/api/redbull', require('./redbull')());
 
-    app.get('/api/videos', (req, res) => {
-        return Response.OK();
-    });
+    app.get('/api/videos', VideosController.getVideos);
 };
