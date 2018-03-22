@@ -6,3 +6,4 @@ build/
 .DS_Store
 .idea/vcs.xml
 .env
+client/dist
