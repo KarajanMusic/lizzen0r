@@ -2,6 +2,7 @@ const logger = require('winston-color');
 const Response = require('../utils/response');
 const google = require('googleapis').google;
 const OAuth2 = google.auth.OAuth2;
+const tokenVerifier = require('google-id-token-verifier');
 
 const oauth2Client = new OAuth2(
     process.env.YOUTUBE_CLIENT_ID,
@@ -26,11 +27,9 @@ module.exports = {
         if (!authToken) {
             return Response.Forbidden('Malformed authorization header').send(res);
         }
-        // Use the auth key to get a token for a request
-        oauth2Client.getToken(authToken[1], function(err, tokens) {
-            if (err) {
-                logger.error(err);
-                return Response.InternalServerError('Unable to retrieve token').send(res);
+        verifier.verify(authToken[1], process.env.YOUTUBE_CLIENT_ID, function(err, tokenInfo) {
+            if (!err) {
+                return Response.InternalServerError('The token is invalid, what are you trying to do? è_é').send(res);
             }
             oauth2Client.setCredentials(authToken[1]);
             // Add the use-ready object and pass it to the next endpoint
