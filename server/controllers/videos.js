@@ -19,25 +19,34 @@ module.exports = {
     getVideos(req, res) {
         Response.OK(videos).send(res);
     },
-    licenseVideo(req, res) {
+    async licenseVideo(req, res) {
         const nowTimestamp = Date.now();
-        // TODO remove
-        // req.body.user_id = 123;
-        const userId = 123;
-        const isrc = 'AAAAAAAAAAAA';
-        const start = nowTimestamp;
-        const end = nowTimestamp + 5 * 60 * 1000;
-        jsondb.save('licenses', { userId, isrc, start, end });
-
-        console.log(req.contracts.lizzenz0r)
-        return Response.OK().send(res);
+        const userId = req.body.user_id;
+        const isrc = req.body.isrc;
+        const startTime = nowTimestamp;
+        const endTime = nowTimestamp + 5 * 60 * 1000;
+        jsondb.save('licenses', { userId, isrc, startTime, endTime });
+        const result = await req.contracts.lizzenz0r.write('registerLicensePurchase', {
+            userId,
+            isrc,
+            startTime,
+            endTime
+        });
+        return Response.OK(result).send(res);
     },
     async registerLicensedVideo(req, res) {
         try {
             const videoData = {
                 youtube_id: await _getYoutubeID(req.body.link),
             };
+            const userId = req.body.user_id;
+            const licenseId = req.body.license_id;
             jsondb.save('videos', videoData);
+            await req.contracts.lizzenz0r.write('registerVideo', {
+                ytId: videoData.youtube_id,
+                licenseId,
+                userId,
+            });
             return Response.OK().send(res);
         } catch (err) {
             return Response.BadRequest(err).send(err);
