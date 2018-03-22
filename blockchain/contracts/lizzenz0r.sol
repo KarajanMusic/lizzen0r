@@ -1,6 +1,14 @@
 pragma solidity ^0.4.21;
 
-contract SimpleStorage {
+contract lizzenz0r {
+    enum licenseTemplate {Lizzenz0rSoundSupplyLicense} // contains licensenames
+    string[] ISRCs // contains all available Songs by ISRC
+
+
+
+
+
+
     uint storedData;
 
     function set(uint x) public {
@@ -13,13 +21,4 @@ contract SimpleStorage {
 
 
 
-    /**********
-     Standard kill() function to recover funds 
-     **********/
-    
-    function kill()
-    { 
-        if (msg.sender == creator)
-            suicide(creator);  // kills this contract and sends remaining funds back to creator
-    }
 }
