@@ -1,24 +1,27 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.18;
 
 contract lizzenz0r {
+
+    address private owner;
+
     enum licenseTemplate {Lizzenz0rSoundSupplyLicense} // contains licensenames
-    string[] ISRCs // contains all available Songs by ISRC
+    bytes24[] isrcs; // contains all available Songs by ISRC
 
-
-
-
-
-
-    uint storedData;
-
-    function set(uint x) public {
-        storedData = x;
+    modifier onlyOwner {
+        require(msg.sender == owner);
+        _;
     }
 
-    function get() public constant returns (uint) {
-        return storedData;
+    function lizzenz0r(address owner_) public {
+        owner = owner_;
     }
 
+    function addISRCs(bytes24[] _isrcs) public onlyOwner {
+        isrcs = _isrcs;
+    }
 
+    function getISRCs() public returns (bytes24[]) {
+        return isrcs;
+    }
 
 }
