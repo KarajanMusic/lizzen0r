@@ -5,7 +5,7 @@ class Initialiser {
     constructor() {
         this.history = createHistory();
         this.initialState = {
-            user:{},
+            user: {},
         };
     }
 }

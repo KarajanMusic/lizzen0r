@@ -28,7 +28,7 @@
   },
   "scripts": {
     "lint": "./node_modules/eslint/bin/eslint.js ./server --fix && cd client && yarn lint && cd ..",
-    "build": "yarn install && cd client && yarn run build && cd .. && yarn lint",
+    "build": "yarn install && cd client && yarn run build && cd ..",
     "prestart": "yarn run build",
     "start": "sh scripts/start.sh",
     "stop": "bash scripts/stop.sh",

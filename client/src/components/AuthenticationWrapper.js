@@ -39,7 +39,7 @@ class AuthenticationWrapper extends Component {
                     scope: 'https://www.googleapis.com/auth/youtube',
                     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
                 })
-                .then(async function() {
+                .then(async () => {
                     window.GoogleAuth = window.gapi.auth2.getAuthInstance();
                     // console.log(GoogleAuth);
                     // console.log(GoogleAuth.isSignedIn);
@@ -68,7 +68,7 @@ class AuthenticationWrapper extends Component {
                     // Listen for sign-in state changes.
                     window.GoogleAuth.isSignedIn.listen(that.updateSigninStatus.bind(that));
                 })
-                .catch(function(e) {
+                .catch(e => {
                     console.log(e);
                 });
         }

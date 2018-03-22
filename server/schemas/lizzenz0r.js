@@ -57,7 +57,7 @@ module.exports = {
         },
         outputs: {},
     },
-    getUserLicenseId:{
+    getUserLicenseId: {
         inputs: {
             userId: {
                 validate: validator.schemas.userId.required(),
@@ -67,8 +67,8 @@ module.exports = {
         outputs: {
             '': {
                 transform: value => value,
-            }
-        }
+            },
+        },
     },
     getLicenseOnVideo: {
         inputs: {

@@ -178,21 +178,22 @@ class Contract {
         await web3MainNet.eth.personal.unlockAccount(this.owner.address, this.owner.password, null);
 
         return new Promise((resolve, reject) => {
-            contract.methods[functionName](...args).send({
-                from: this.owner.address,
-                gas: 4500000,
-            })
-            .on('error', err => reject(err))
-            .on('transactionHash', txHash => console.log(`tx hash: ${txHash}`.blue))
-            .on('confirmation', confirmationNumber => console.log(`confirms: ${confirmationNumber}`.green))
-            .on('receipt', receipt => {
-                logger.info(
-                    `Call succeeded, gas used in tx: ${receipt.gasUsed} (approx. $${Math.round(
-                        receipt.gasUsed * 20e-9 * 440 * 100,
-                    ) / 100})`,
-                );
-                resolve(receipt);
-            });
+            contract.methods[functionName](...args)
+                .send({
+                    from: this.owner.address,
+                    gas: 4500000,
+                })
+                .on('error', err => reject(err))
+                .on('transactionHash', txHash => console.log(`tx hash: ${txHash}`.blue))
+                .on('confirmation', confirmationNumber => console.log(`confirms: ${confirmationNumber}`.green))
+                .on('receipt', receipt => {
+                    logger.info(
+                        `Call succeeded, gas used in tx: ${receipt.gasUsed} (approx. $${Math.round(
+                            receipt.gasUsed * 20e-9 * 440 * 100,
+                        ) / 100})`,
+                    );
+                    resolve(receipt);
+                });
         });
     }
 }

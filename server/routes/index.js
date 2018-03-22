@@ -1,7 +1,6 @@
 const checkYoutubeToken = require('../middleware/auth').checkYoutubeToken;
 
 module.exports = function(app, contracts) {
-
     // TERRIBLE hack to make contracts interface available on request object
     app.use((req, res, next) => {
         req.contracts = contracts;
