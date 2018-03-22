@@ -26,19 +26,19 @@ module.exports = {
             },
             startTime: {
                 validate: Joi.number().positive(),
-                transform: value => value, 
+                transform: value => value,
             },
             endTime: {
                 validate: Joi.number().positive(),
                 transform: value => value,
-            }
+            },
         },
         outputs: {
             licenseId: {
                 validate: validator.schemas.licenseId.required(),
                 transform: value => value,
-            }
-        }
+            },
+        },
     },
     registerVideo: {
         inputs: {
@@ -55,15 +55,13 @@ module.exports = {
                 transform: value => value,
             },
         },
-        outputs: {
-
-        }
+        outputs: {},
     },
     getLicenseOnVideo: {
         inputs: {
             ytId: {
                 validate: validator.schemas.youtubeId.required(),
-            }
+            },
         },
         outputs: {
             userId: {
@@ -76,13 +74,13 @@ module.exports = {
             },
             start: {
                 validate: Joi.number().positive(),
-                transform: value => value, 
+                transform: value => value,
             },
             end: {
                 validate: Joi.number().positive(),
-                transform: value => value, 
+                transform: value => value,
             },
-        }
+        },
     },
     getISRCs: {
         inputs: {},
