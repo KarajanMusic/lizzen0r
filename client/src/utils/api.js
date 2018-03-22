@@ -36,7 +36,7 @@ class API {
         });
     }
 
-    buyLicence(user_id, isrc) {
+    buyLicense(user_id, isrc) {
         return this.request('POST', 'videos/buy', null, {
             user_id,
             isrc,
