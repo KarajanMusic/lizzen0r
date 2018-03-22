@@ -1,3 +1,4 @@
+const logger = require('winston-color');
 const Response = require('../utils/response');
 const google = require('googleapis').google;
 const OAuth2 = google.auth.OAuth2;
@@ -17,24 +18,27 @@ const url = oauth2Client.generateAuthUrl({
 
 module.exports = {
     checkYoutubeToken: (req, res, next) => {
-        // Get the token out of the auth header
+        // Check if the authorization header is valid and pull out the auth key
         if (!req.headers.authorization) {
             return Response.Forbidden('An authorization token is required').send(res);
         }
-        const authToken = req.headers.authorization.match(/^Bearer (\w+)$/);
+        const authToken = req.headers.authorization.match(/^Bearer (.+)$/);
         if (!authToken) {
             return Response.Forbidden('Malformed authorization header').send(res);
         }
-        oauth2Client.getToken(authToken[1], function(err, tokens) {
+        // Use the auth key to get a token for a request
+        /*oauth2Client.getToken(authToken[1], function(err, tokens) {
             if (err) {
+                logger.error(err);
                 return Response.InternalServerError('Unable to retrieve token').send(res);
-            }
-            oauth2Client.setCredentials(tokens);
-            res.youtube = google.youtube({
-                version: 'v3',
-                auth: oauth2Client,
-            });
-            next();
+            }*/
+        oauth2Client.setCredentials(authToken[1]);
+        // Add the use-ready object and pass it to the next endpoint
+        res.locals.youtube = google.youtube({
+            version: 'v3',
+            auth: oauth2Client,
         });
+        next();
+        //});
     },
 };
