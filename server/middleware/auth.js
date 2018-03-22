@@ -27,18 +27,18 @@ module.exports = {
             return Response.Forbidden('Malformed authorization header').send(res);
         }
         // Use the auth key to get a token for a request
-        /*oauth2Client.getToken(authToken[1], function(err, tokens) {
+        oauth2Client.getToken(authToken[1], function(err, tokens) {
             if (err) {
                 logger.error(err);
                 return Response.InternalServerError('Unable to retrieve token').send(res);
-            }*/
-        oauth2Client.setCredentials(authToken[1]);
-        // Add the use-ready object and pass it to the next endpoint
-        res.locals.youtube = google.youtube({
-            version: 'v3',
-            auth: oauth2Client,
+            }
+            oauth2Client.setCredentials(authToken[1]);
+            // Add the use-ready object and pass it to the next endpoint
+            res.locals.youtube = google.youtube({
+                version: 'v3',
+                auth: oauth2Client,
+            });
+            next();
         });
-        next();
-        //});
     },
 };
