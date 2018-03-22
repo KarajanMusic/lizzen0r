@@ -1,0 +1,55 @@
+"Alternative"
+
+            "link": "https://www.youtube.com/watch?v=KY1lF-PPuwY&index=10&list=PLHT0PZMhBKjywh8KCmckUERRfpx0p5Hap",
+            "isrc": "ATRG71614039",
+            "title": "Furnace White",
+   
+            "link": "https://www.youtube.com/watch?v=UcaY45tmrL4&list=PLHT0PZMhBKjzwflV-IDuZBBoeHPkcCx5K&index=8",
+            "isrc": "ATRG71515025",
+            "title": "Neon Hyperdrive",
+
+            "link": "https://www.youtube.com/watch?v=psRFvD6X7QI&index=10&list=PLHT0PZMhBKjzwflV-IDuZBBoeHPkcCx5K",
+            "isrc": "ATRG71515022",
+            "title": "Trailblazer",
+
+            "link": "https://www.youtube.com/watch?v=VY_SW1krnAM&list=PLHT0PZMhBKjywh8KCmckUERRfpx0p5Hap&index=4",
+            "isrc": "ATRG71614012",
+            "title": "Blaze",
+
+trap
+            "link": "https://www.youtube.com/watch?v=1_OP2igZ37E&index=7&list=PLHT0PZMhBKjwGxU2cujDFEbHKC0c0pj4s",
+            "isrc": "ATRG71513019",
+            "title": "Tripped",
+
+
+acoustic
+
+            "link": "https://www.youtube.com/watch?v=CYBFpIh8PbA&index=3&list=PLHT0PZMhBKjyC_wSwJpApesvtltjuEtHx",
+            "isrc": "ATRG71617009",
+            "title": "Elani",
+ 
+            "link": "https://www.youtube.com/watch?v=Ehon8cMJTtE&list=PLHT0PZMhBKjyC_wSwJpApesvtltjuEtHx&index=5",
+            "isrc": "ATRG71617019",
+            "title": "Fallen",
+ 
+Rock
+            "link": "https://www.youtube.com/watch?v=ZIh01SDoBnQ&list=PLHT0PZMhBKjwMPSYQw9sS0WhMmJZlHvSq&index=12",
+            "isrc": "ATRG71604046",
+            "title": "Rolling Thunder",
+
+            "link": "https://www.youtube.com/watch?v=3e5nnJF9ihU&list=PLHT0PZMhBKjwUR9x3BopgGsl1MhO9QBha",
+            "isrc": "ATRG71604052",
+            "title": "Rolling 3s",
+
+            "link": "https://www.youtube.com/watch?v=Y8tN7c5D_fY&list=PLHT0PZMhBKjyETvqi8DrmQzr-q47kAR-A&index=6",
+            "isrc": "ATRG71507019",
+            "title": "Ripping",
+
+
+            "link": "https://www.youtube.com/watch?v=Oo63dTDChq8&index=8&list=PLHT0PZMhBKjyETvqi8DrmQzr-q47kAR-A",
+            "isrc": "ATRG71507023",
+            "title": "Surface Rover",
+
+            "link": "https://www.youtube.com/watch?v=anofUqBwXis&list=PLHT0PZMhBKjzqgBxTWNctzJHAipp6-aFr&index=3",
+            "isrc": "ATRG71553084",
+            "title": "Higher Than The Sun",
