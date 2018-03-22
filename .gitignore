@@ -5,6 +5,7 @@ build/
 *.log
 .DS_Store
 .idea/vcs.xml
+.env
 client/dist
-.vscode/launch.json
 configs/.env
+.vscode
