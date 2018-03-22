@@ -51,11 +51,13 @@ contract lizzenz0r {
         videoRegistrations[ytId] = licenseId;
     }
 
-    function getLicenseOnVideo(string ytId) public constant returns (uint, bytes12, uint, uint) {
+    function getLicenseOnVideo(string ytId) public constant returns (uint userId, bytes12 isrc, uint start, uint end) {
         require(videoRegistrations[ytId] != 0);
 
-        uint lId = videoRegistrations[ytId];        
-        return (issuedLicenses[lId].userId, issuedLicenses[lId].isrc, issuedLicenses[lId].start, issuedLicenses[lId].end);
+        userId = issuedLicenses[videoRegistrations[ytId]].userId;
+        isrc = issuedLicenses[videoRegistrations[ytId]].isrc;
+        start = issuedLicenses[videoRegistrations[ytId]].start;
+        end = issuedLicenses[videoRegistrations[ytId]].end;    
     }
 
     function getISRCs() public constant returns (bytes12[]) {

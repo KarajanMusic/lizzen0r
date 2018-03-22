@@ -8,11 +8,11 @@ const data = require('../server/data/index');
     const args = { isrcs_: data.videos.map(recording => recording.isrc) };
 
     try {
-        await contracts.lizzenz0r.validateCall('addISRCs', args);
+        await contracts.lizzenz0r.validateCall('setISRCs', args);
 
         console.log('Writing ISRCs...'.blue);
     
-        const result = await contracts.lizzenz0r.write('addISRCs', args);
+        const result = await contracts.lizzenz0r.write('setISRCs', args);
 
         console.log('Done!'.green);
     } catch (err) {

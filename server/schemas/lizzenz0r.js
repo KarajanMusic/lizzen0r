@@ -14,14 +14,6 @@ module.exports = {
         },
         outputs: {},
     },
-    getISRCs: {
-        inputs: {},
-        outputs: {
-            '': {
-                transform: values => values.map(value => web3.utils.hexToAscii(value)),
-            },
-        },
-    },
     registerLicensePurchase: {
         inputs: {
             userId: {
@@ -74,7 +66,30 @@ module.exports = {
             }
         },
         outputs: {
-            // TODO four values
+            userId: {
+                validate: validator.schemas.userId.required(),
+                transform: value => value,
+            },
+            isrc: {
+                validate: validator.schemas.isrc.required(),
+                transform: value => web3.utils.padLeft(web3.utils.toHex(value), 24),
+            },
+            start: {
+                validate: Joi.number().positive(),
+                transform: value => value, 
+            },
+            end: {
+                validate: Joi.number().positive(),
+                transform: value => value, 
+            },
         }
-    }
+    },
+    getISRCs: {
+        inputs: {},
+        outputs: {
+            '': {
+                transform: values => values.map(value => web3.utils.hexToAscii(value)),
+            },
+        },
+    },
 };
