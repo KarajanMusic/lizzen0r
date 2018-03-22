@@ -14,7 +14,7 @@ const data = require('../server/data/index');
     
         const result = await contracts.lizzenz0r.write('setISRCs', args);
 
-        console.log('Done!'.green);
+        console.log('Done! Gas used:'.green, result.gasUsed);
     } catch (err) {
         console.log('Error validating function call'.red, err);
     }
