@@ -39,12 +39,12 @@ module.exports = {
             };
             const userId = req.body.user_id;
             const licenseId = req.body.license_id;
-            await req.contracts.lizzenz0r.write('registerVideo', {
+            const result = await req.contracts.lizzenz0r.write('registerVideo', {
                 ytId: videoData.youtube_id,
                 licenseId,
                 userId,
             });
-            return Response.OK().send(res);
+            return Response.OK(result).send(res);
         } catch (err) {
             return Response.BadRequest(err).send(err);
         }
