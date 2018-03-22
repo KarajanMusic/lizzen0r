@@ -27,7 +27,7 @@ module.exports = {
         if (!authToken) {
             return Response.Forbidden('Malformed authorization header').send(res);
         }
-        verifier.verify(authToken[1], process.env.YOUTUBE_CLIENT_ID, function(err, tokenInfo) {
+        tokenVerifier.verify(authToken[1], process.env.YOUTUBE_CLIENT_ID, function(err, tokenInfo) {
             if (!err) {
                 return Response.InternalServerError('The token is invalid, what are you trying to do? è_é').send(res);
             }

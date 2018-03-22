@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 
-import Header from './Header';
+import Header from '../../components/header/header';
+import VideosList from '../../components/videoslist/videoslist';
 
 class Home extends Component {
-    // static propTypes = {
-    //     onConfirm: PropTypes.func.isRequired,
-    //     onCancel: PropTypes.func.isRequired,
-    //     message: PropTypes.string.isRequired,
-    //     title: PropTypes.string.isRequired,
-    // };
-
     constructor() {
         super();
     }
@@ -27,8 +21,7 @@ class Home extends Component {
         return (
             <div>
                 <Header user={user} />
-                Home Screen .......
-                asd
+                <VideosList />
             </div>
         );
     }

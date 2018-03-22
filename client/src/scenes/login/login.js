@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import './Login.scss';
+import Header from '../../components/header/header';
+import './login.scss';
 
 class Login extends Component {
-
     constructor() {
         super();
     }
@@ -14,8 +13,6 @@ class Login extends Component {
     //     message: PropTypes.string.isRequired,
     //     title: PropTypes.string.isRequired,
     // };
-
-
 
     // }
     //
@@ -31,7 +28,9 @@ class Login extends Component {
         return (
             <div>
                 <Header />
-               <button className="login-button" onClick={() => this.signIn()}>Youtube Login</button>
+                <button className="login-button" onClick={() => this.signIn()}>
+                    Youtube Login
+                </button>
             </div>
         );
     }

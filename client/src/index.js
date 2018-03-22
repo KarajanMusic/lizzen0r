@@ -8,8 +8,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // import registerServiceWorker from 'registerServiceWorker';
 import Initialiser from 'initialiser';
 import { isAuthenticated, isAdmin } from './utils/auth';
-import Login from './components/Login';
-import Home from './components/Home';
 
 import AuthenticationWrapper from './components/AuthenticationWrapper';
 import store from 'ducks/configureStore';
@@ -53,9 +51,7 @@ const mapStateToProps = state => ({
 //     );
 // };
 
-
 function updateSigninStatus(isSignedIn) {
-
     console.log(isSignedIn);
 
     console.log('GOT CALLEd');
@@ -72,7 +68,6 @@ function updateSigninStatus(isSignedIn) {
     //     location.href = '/login';
     // }
 }
-
 
 // const connectGoogle = () => {
 //     window.GoogleAuth; // Google Auth object.
@@ -108,7 +103,6 @@ function updateSigninStatus(isSignedIn) {
 // };
 // connectGoogle();
 
-
 // const PrivateRoute = connect(mapStateToProps, null)(({ component: Component, ...rest }) => (
 //     <Route {...rest} render={props => renderRedirect(Object.assign(props, rest, { Component }))} />
 // ));
@@ -120,9 +114,9 @@ ReactDOM.render(
                 <div className="view-container">
                     <AuthenticationWrapper />
                     {/*<Switch>*/}
-                        {/*<Route exact path="/" component={Home} />*/}
-                        {/*<Route exact path="/login" component={Login} />*/}
-                        {/*<Route component={() => <h1>404 - Not Found</h1>} />*/}
+                    {/*<Route exact path="/" component={Home} />*/}
+                    {/*<Route exact path="/login" component={Login} />*/}
+                    {/*<Route component={() => <h1>404 - Not Found</h1>} />*/}
                     {/*</Switch>*/}
                 </div>
                 {/*<Toaster />*/}

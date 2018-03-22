@@ -1649,7 +1649,7 @@ exports.push([module.i, "/*! normalize.css v7.0.0 | MIT License | github.com/nec
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/components/Header.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/components/header/header.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
@@ -1664,7 +1664,22 @@ exports.push([module.i, ".global-header {\n  background: #121212;\n  width: 100%
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/components/Login.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/components/videoslist/videoslist.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/scenes/login/login.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
@@ -27879,9 +27894,11 @@ module.exports = function(originalModule) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router__ = __webpack_require__("./node_modules/react-router/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Login__ = __webpack_require__("./src/components/Login.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Home__ = __webpack_require__("./src/components/Home.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scenes_login_login__ = __webpack_require__("./src/scenes/login/login.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scenes_home_home__ = __webpack_require__("./src/scenes/home/home.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_api__ = __webpack_require__("./src/utils/api.js");
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 
 
 
@@ -27891,7 +27908,6 @@ module.exports = function(originalModule) {
 // import './AuthenticationWrapper.scss';
 
 class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-
     constructor() {
         super();
         this.state = {
@@ -27900,15 +27916,19 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
     }
 
     updateSigninStatus(isSignedIn) {
-        console.log('============ ', isSignedIn);
-        console.log(window.GoogleAuth.currentUser.get());
-        const user = window.GoogleAuth.currentUser.get();
-        this.setState({ user });
+        var _this = this;
 
-        // document.location.href = '/';
-        if (signedInStatus && location.href.indexOf('login') > 0) {
-            location.href = '/';
-        }
+        return _asyncToGenerator(function* () {
+            console.log('============ ', isSignedIn);
+            console.log(window.GoogleAuth.currentUser.get());
+            const user = window.GoogleAuth.currentUser.get();
+            _this.setState({ user });
+            yield __WEBPACK_IMPORTED_MODULE_4__utils_api__["a" /* default */].postUser(user);
+            // document.location.href = '/';
+            if (signedInStatus && location.href.indexOf('login') > 0) {
+                location.href = '/';
+            }
+        })();
     }
 
     componentDidMount() {
@@ -27918,11 +27938,11 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
         window.GoogleAuth; // Google Auth object.
         function start() {
             window.gapi.client.init({
-                'apiKey': 'AIzaSyAysq3hq5e6seJFkcyoun3s2-5HIRKCNgU',
-                'clientId': '1038963969656-a60janj4qrlnkv9mi1l8dp6tup0fgboq.apps.googleusercontent.com',
-                'scope': 'https://www.googleapis.com/auth/youtube',
-                'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest']
-            }).then(function () {
+                apiKey: 'AIzaSyAysq3hq5e6seJFkcyoun3s2-5HIRKCNgU',
+                clientId: '1038963969656-a60janj4qrlnkv9mi1l8dp6tup0fgboq.apps.googleusercontent.com',
+                scope: 'https://www.googleapis.com/auth/youtube',
+                discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest']
+            }).then(_asyncToGenerator(function* () {
                 window.GoogleAuth = window.gapi.auth2.getAuthInstance();
                 // console.log(GoogleAuth);
                 // console.log(GoogleAuth.isSignedIn);
@@ -27938,7 +27958,7 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
                 if (signedInStatus) {
                     const user = window.GoogleAuth.currentUser.get();
                     that.setState({ user });
-                    Object(__WEBPACK_IMPORTED_MODULE_4__utils_api__["a" /* postUser */])(user);
+                    yield __WEBPACK_IMPORTED_MODULE_4__utils_api__["a" /* default */].postUser(user);
                     if (location.href.indexOf('login') > 0) {
                         location.href = '/';
                     }
@@ -27950,7 +27970,7 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
 
                 // Listen for sign-in state changes.
                 window.GoogleAuth.isSignedIn.listen(that.updateSigninStatus.bind(that));
-            }).catch(function (e) {
+            })).catch(function (e) {
                 console.log(e);
             });
         }
@@ -27972,8 +27992,8 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
             user ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_1_react_router__["c" /* Switch */],
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { exact: true, path: '/', render: () => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Home__["a" /* default */], { user: user }) }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { exact: true, path: '/login', component: __WEBPACK_IMPORTED_MODULE_2__Login__["a" /* default */] }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { exact: true, path: '/', render: () => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__scenes_home_home__["a" /* default */], { user: user }) }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { exact: true, path: '/login', component: __WEBPACK_IMPORTED_MODULE_2__scenes_login_login__["a" /* default */] }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { component: () => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'h1',
                         null,
@@ -27982,7 +28002,7 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
             ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_1_react_router__["c" /* Switch */],
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { component: __WEBPACK_IMPORTED_MODULE_2__Login__["a" /* default */] })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* Route */], { component: __WEBPACK_IMPORTED_MODULE_2__scenes_login_login__["a" /* default */] })
             )
         );
     }
@@ -27992,20 +28012,19 @@ class AuthenticationWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Compone
 
 /***/ }),
 
-/***/ "./src/components/Header.js":
+/***/ "./src/components/header/header.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Header_scss__ = __webpack_require__("./src/components/Header.scss");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Header_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Header_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__header_scss__ = __webpack_require__("./src/components/header/header.scss");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__header_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__header_scss__);
 
 
 
 
 class Header extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-
     constructor() {
         super();
     }
@@ -28033,13 +28052,13 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
 /***/ }),
 
-/***/ "./src/components/Header.scss":
+/***/ "./src/components/header/header.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/components/Header.scss");
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/components/header/header.scss");
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -28053,8 +28072,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Header.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Header.scss");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./header.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./header.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -28065,114 +28084,74 @@ if(false) {
 
 /***/ }),
 
-/***/ "./src/components/Home.js":
+/***/ "./src/components/videoslist/videoslist.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Header__ = __webpack_require__("./src/components/Header.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__videoslist_scss__ = __webpack_require__("./src/components/videoslist/videoslist.scss");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__videoslist_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__videoslist_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_api__ = __webpack_require__("./src/utils/api.js");
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//await api.authenticate(credentials);
 
 
 
 
-class Home extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-    // static propTypes = {
-    //     onConfirm: PropTypes.func.isRequired,
-    //     onCancel: PropTypes.func.isRequired,
-    //     message: PropTypes.string.isRequired,
-    //     title: PropTypes.string.isRequired,
-    // };
 
+
+class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     constructor() {
         super();
-    }
-
-    componentWillMount() {
-        console.log('will mount');
+        this.state = {
+            videos: null
+        };
+        this.getVideos();
     }
 
     componentDidMount() {
+        // console.log(window.GoogleAuth.isSignedIn.get());
         console.log('MOUNTED');
+        console.log(this.props);
+    }
+
+    getVideos() {
+        var _this = this;
+
+        return _asyncToGenerator(function* () {
+            try {
+                const videos = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].getVideos();
+                console.log(videos);
+                _this.setState({ videos });
+            } catch (err) {
+                console.error(err);
+            }
+        })();
     }
 
     render() {
-        const { user } = this.props;
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
+        const { videos } = this.state;
+        return videos ? videos.map(v => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
             null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Header__["a" /* default */], { user: user }),
-            'Home Screen ....... asd'
-        );
+            JSON.stringify(v)
+        )) : 'Loading videos...';
     }
 }
+/* harmony export (immutable) */ __webpack_exports__["a"] = VideosList;
 
-/* harmony default export */ __webpack_exports__["a"] = (Home);
 
 /***/ }),
 
-/***/ "./src/components/Login.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Header__ = __webpack_require__("./src/components/Header.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Login_scss__ = __webpack_require__("./src/components/Login.scss");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Login_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Login_scss__);
-
-
-
-
-class Login extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-
-    constructor() {
-        super();
-    }
-
-    // static propTypes = {
-    //     onConfirm: PropTypes.func.isRequired,
-    //     onCancel: PropTypes.func.isRequired,
-    //     message: PropTypes.string.isRequired,
-    //     title: PropTypes.string.isRequired,
-    // };
-
-
-    // }
-    //
-    // componentDidMount() {
-    //
-    // }
-
-    signIn() {
-        window.GoogleAuth.signIn();
-    }
-
-    render() {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Header__["a" /* default */], null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'button',
-                { className: 'login-button', onClick: () => this.signIn() },
-                'Youtube Login'
-            )
-        );
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (Login);
-
-/***/ }),
-
-/***/ "./src/components/Login.scss":
+/***/ "./src/components/videoslist/videoslist.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/components/Login.scss");
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/components/videoslist/videoslist.scss");
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -28186,8 +28165,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Login.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Login.scss");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./videoslist.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./videoslist.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -28242,14 +28221,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_tap_event_plugin__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_initialiser__ = __webpack_require__("./src/initialiser.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_auth__ = __webpack_require__("./src/utils/auth.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Login__ = __webpack_require__("./src/components/Login.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Home__ = __webpack_require__("./src/components/Home.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_AuthenticationWrapper__ = __webpack_require__("./src/components/AuthenticationWrapper.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ducks_configureStore__ = __webpack_require__("./src/ducks/configureStore.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_normalize_css__ = __webpack_require__("./node_modules/normalize.css/normalize.css");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_normalize_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_normalize_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_scss_index_scss__ = __webpack_require__("./src/scss/index.scss");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_scss_index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_scss_index_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_AuthenticationWrapper__ = __webpack_require__("./src/components/AuthenticationWrapper.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ducks_configureStore__ = __webpack_require__("./src/ducks/configureStore.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_normalize_css__ = __webpack_require__("./node_modules/normalize.css/normalize.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_normalize_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_normalize_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_scss_index_scss__ = __webpack_require__("./src/scss/index.scss");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_scss_index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_scss_index_scss__);
 /* eslint react/prop-types: 0 */
 
 
@@ -28258,8 +28235,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 // import registerServiceWorker from 'registerServiceWorker';
-
-
 
 
 
@@ -28305,9 +28280,7 @@ const mapStateToProps = state => ({
 //     );
 // };
 
-
 function updateSigninStatus(isSignedIn) {
-
     console.log(isSignedIn);
 
     console.log('GOT CALLEd');
@@ -28359,14 +28332,13 @@ function updateSigninStatus(isSignedIn) {
 // };
 // connectGoogle();
 
-
 // const PrivateRoute = connect(mapStateToProps, null)(({ component: Component, ...rest }) => (
 //     <Route {...rest} render={props => renderRedirect(Object.assign(props, rest, { Component }))} />
 // ));
 
 __WEBPACK_IMPORTED_MODULE_0_react_dom___default.a.render(React.createElement(
     __WEBPACK_IMPORTED_MODULE_1_react_redux__["a" /* Provider */],
-    { store: __WEBPACK_IMPORTED_MODULE_10_ducks_configureStore__["a" /* default */] },
+    { store: __WEBPACK_IMPORTED_MODULE_8_ducks_configureStore__["a" /* default */] },
     React.createElement(
         __WEBPACK_IMPORTED_MODULE_3_react_router_redux__["a" /* ConnectedRouter */],
         { history: history },
@@ -28376,7 +28348,7 @@ __WEBPACK_IMPORTED_MODULE_0_react_dom___default.a.render(React.createElement(
             React.createElement(
                 'div',
                 { className: 'view-container' },
-                React.createElement(__WEBPACK_IMPORTED_MODULE_9__components_AuthenticationWrapper__["a" /* default */], null)
+                React.createElement(__WEBPACK_IMPORTED_MODULE_7__components_AuthenticationWrapper__["a" /* default */], null)
             )
         )
     )
@@ -28405,6 +28377,132 @@ class Initialiser {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (new Initialiser());
+
+/***/ }),
+
+/***/ "./src/scenes/home/home.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_header_header__ = __webpack_require__("./src/components/header/header.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_videoslist_videoslist__ = __webpack_require__("./src/components/videoslist/videoslist.js");
+
+
+
+
+
+class Home extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+    constructor() {
+        super();
+    }
+
+    componentWillMount() {
+        console.log('will mount');
+    }
+
+    componentDidMount() {
+        console.log('MOUNTED');
+    }
+
+    render() {
+        const { user } = this.props;
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_header_header__["a" /* default */], { user: user }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_videoslist_videoslist__["a" /* default */], null)
+        );
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Home);
+
+/***/ }),
+
+/***/ "./src/scenes/login/login.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_header_header__ = __webpack_require__("./src/components/header/header.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_scss__ = __webpack_require__("./src/scenes/login/login.scss");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__login_scss__);
+
+
+
+
+class Login extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+    constructor() {
+        super();
+    }
+
+    // static propTypes = {
+    //     onConfirm: PropTypes.func.isRequired,
+    //     onCancel: PropTypes.func.isRequired,
+    //     message: PropTypes.string.isRequired,
+    //     title: PropTypes.string.isRequired,
+    // };
+
+    // }
+    //
+    // componentDidMount() {
+    //
+    // }
+
+    signIn() {
+        window.GoogleAuth.signIn();
+    }
+
+    render() {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_header_header__["a" /* default */], null),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'button',
+                { className: 'login-button', onClick: () => this.signIn() },
+                'Youtube Login'
+            )
+        );
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Login);
+
+/***/ }),
+
+/***/ "./src/scenes/login/login.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/scenes/login/login.scss");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/lib/addStyles.js")(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./login.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./login.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 
@@ -28444,20 +28542,46 @@ if(false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = postUser;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__("./node_modules/axios/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth__ = __webpack_require__("./src/utils/auth.js");
 
 
-function postUser(user) {
-    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/users', {
-        data: user
-    }).then(function (response) {
-        console.log(response);
-    }).catch(function (error) {
-        console.log(error);
-    });
+
+class API {
+    constructor() {
+        this.headers = {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+        };
+    }
+
+    request(method, url, params, data) {
+        return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.request({
+            method,
+            url: `/api/${url}`,
+            params,
+            data,
+            headers: Object.assign(this.headers, {
+                Authorization: Object(__WEBPACK_IMPORTED_MODULE_1__auth__["a" /* getAuthHeader */])()
+            })
+        }).then(response => response.data.payload).catch(error => {
+            throw error.response;
+        });
+    }
+
+    getVideos() {
+        return this.request('GET', 'videos');
+    }
+
+    postUser(user) {
+        return this.request('POST', 'users', null, {
+            user
+        });
+    }
 }
+
+/* harmony default export */ __webpack_exports__["a"] = (new API());
 
 /***/ }),
 
@@ -28466,12 +28590,20 @@ function postUser(user) {
 
 "use strict";
 /* unused harmony export isAuthenticated */
+/* harmony export (immutable) */ __webpack_exports__["a"] = getAuthHeader;
 const isAdmin = false;
 /* unused harmony export isAdmin */
 
+
 function isAuthenticated() {
     return window.GoogleAuth ? window.GoogleAuth.isSignedIn.get() : false;
-};
+}
+
+function getAuthHeader() {
+    const token = window.GoogleAuth.currentUser.get();
+    console.log(token);
+    return 'Bearer ' + token;
+}
 
 /***/ }),
 

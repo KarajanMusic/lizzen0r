@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-import './Header.scss';
+import './header.scss';
 
 class Header extends Component {
-
     constructor() {
         super();
     }
