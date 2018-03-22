@@ -2,7 +2,7 @@ const logger = require('winston');
 
 const _configs = {
     _globals: {
-        port: 3000,
+        port: 8180,
     },
     development: {},
     produdction: {},
