@@ -28148,8 +28148,8 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                     license_id: result.licenseId,
                     loading: false,
                     block: {
-                        block_hash: result.blockHash,
-                        tx_hash: result.transactionHash
+                        block_hash: result.result.blockHash,
+                        tx_hash: result.result.transactionHash
                     }
                 });
                 alert('You have been licensed to register a video with this recording!');
