@@ -11,7 +11,7 @@ module.exports = {
         }),
     schemas: {
         numericString: Joi.string().regex(/^\d+$/),
-        iswc: Joi.string().regex(/^T[0-9]{10}$/),
+        isrc: Joi.string().regex(/^[A-Z0-9]{12}$/),
         hash: Joi.string().regex(/^[0-9A-Za-z]{32}$/),
         id: Joi.number().positive(),
     },

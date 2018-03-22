@@ -3,7 +3,7 @@ const checkYoutubeToken = require('../middleware/auth').checkYoutubeToken;
   ctx.redirect(`app://code/${encodeURIComponent(ctx.query.code)}`)
 });*/
 
-module.exports = function(app) {
+module.exports = function(app, contracts) {
     // Add headers
     app.use((req, res, next) => {
         // TODO: It should probably allow connection from local only, as it is the UI doing the requests

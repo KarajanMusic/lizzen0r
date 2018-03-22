@@ -122,7 +122,6 @@ class Contract {
                     }'`,
                 );
             }
-
             // argument must have valid value
             await Joi.validate(
                 args[input.name],
