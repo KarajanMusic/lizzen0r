@@ -8,9 +8,8 @@ function _getYoutubeID(link) {
             const parsedYoutube = req.body.link.match(/(https?:\/\/)?(www.)?youtube\.[a-z]{2,3}\/watch\?v=(.+)/);
             if (parsedYoutube) {
                 return resolve(parsedYoutube[3]);
-            } else {
-                return reject('Does not look like a youtube link');
             }
+            return reject('Does not look like a youtube link');
         }
         return reject('Missing youtube link');
     });

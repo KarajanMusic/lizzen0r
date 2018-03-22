@@ -6,7 +6,7 @@ module.exports = {
         if (!req.body.user) {
             return Response.BadRequest('Missing user object.').send(res);
         }
-        db.rpush(['users', JSON.stringify(req.body.user)], function(err, reply) {
+        db.rpush(['users', JSON.stringify(req.body.user)], (err, reply) => {
             if (err) {
                 return Response.InternalServerError(err).send(res);
             }
@@ -14,7 +14,7 @@ module.exports = {
         });
     },
     getUsers(req, res) {
-        client.lrange('users', 0, -1, function(err, reply) {
+        client.lrange('users', 0, -1, (err, reply) => {
             if (err) {
                 return Response.InternalServerError(err).send(res);
             }

@@ -6,8 +6,9 @@ const helmet = require('helmet');
 const path = require('path');
 const compression = require('compression');
 const config = require('./config');
+const contracts = require('./contracts')();
 
-require('loadenv')();
+require('dotenv').load();
 
 // const port_https = 8000;
 const app = express();
@@ -35,7 +36,7 @@ app.use(bodyParser.json({ type: '*/*' }));
 
 // Inject routes
 logger.info('[SERVER] Initializing routes');
-require('./routes')(app);
+require('./routes')(app, contracts);
 
 // Fallback everything else to the React application
 app.use(express.static(path.join(__dirname, '../client/dist')));
