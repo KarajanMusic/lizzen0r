@@ -4,7 +4,7 @@ require('dotenv').load();
 
 module.exports = function() {
     const contracts = {};
-    const filenames = fs.readdirSync('blockchain/build/contracts'); // eslint-disable-line no-sync
+    const filenames = fs.readdirSync(__dirname + '/../blockchain/build/contracts'); // eslint-disable-line no-sync
     for (const filename of filenames) {
         contracts[filename.replace('.json', '')] = new Contract(filename, process.env.CONTRACT_ADDRESS, {
             address: process.env.OWNER_ADDRESS,
