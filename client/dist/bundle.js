@@ -28108,7 +28108,8 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             videos: null,
             link: null,
             license_id: null,
-            loading: false
+            loading: false,
+            block: null
         };
         this.getVideos = this.getVideos.bind(this);
     }
@@ -28144,8 +28145,12 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                 const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].buyLicense(_this2.getUserID(), isrc);
                 console.log(result);
                 _this2.setState({
-                    license_id: result,
-                    loading: false
+                    license_id: result.licenseId,
+                    loading: false,
+                    block: {
+                        block_hash: result.blockHash,
+                        tx_hash: result.transactionHash
+                    }
                 });
                 alert('You have been licensed to register a video with this recording!');
             } catch (err) {
@@ -28239,6 +28244,24 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                     'Buy license'
                 )
             )),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'h2',
+                { className: 'videos-section-title' },
+                'License blockchain info'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'p',
+                null,
+                'Ethereum Kovan Block Hash: ',
+                this.state.block ? this.state.block.block_hash : 'N.D.'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'p',
+                null,
+                'Ethereum Kovan Transaction Hash: ',
+                this.state.block ? this.state.block.tx_hash : 'N.D.'
+            ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'h2',

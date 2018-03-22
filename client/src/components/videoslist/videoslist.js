@@ -13,6 +13,7 @@ export default class VideosList extends Component {
             link: null,
             license_id: null,
             loading: false,
+            block: null,
         };
         this.getVideos = this.getVideos.bind(this);
     }
@@ -41,8 +42,12 @@ export default class VideosList extends Component {
             const result = await api.buyLicense(this.getUserID(), isrc);
             console.log(result);
             this.setState({
-                license_id: result,
+                license_id: result.licenseId,
                 loading: false,
+                block: {
+                    block_hash: result.blockHash,
+                    tx_hash: result.transactionHash,
+                },
             });
             alert('You have been licensed to register a video with this recording!');
         } catch (err) {
@@ -108,6 +113,10 @@ export default class VideosList extends Component {
                         </button>
                     </div>
                 ))}
+                <hr />
+                <h2 className="videos-section-title">License blockchain info</h2>
+                <p>Ethereum Kovan Block Hash: {this.state.block ? this.state.block.block_hash : 'N.D.'}</p>
+                <p>Ethereum Kovan Transaction Hash: {this.state.block ? this.state.block.tx_hash : 'N.D.'}</p>
                 <hr />
                 <h2 className="videos-section-title">Register licensed youtube video</h2>
                 <p>Youtube Video Link:</p>
