@@ -50,6 +50,77 @@ const renderRedirect = props => {
     );
 };
 
+/**
+ * Listener called when user completes auth flow. If the currentApiRequest
+ * variable is set, then the user was prompted to authorize the application
+ * before the request executed. In that case, proceed with that API request.
+ */
+function updateSigninStatus(isSignedIn) {
+
+    console.log(isSignedIn);
+
+    if (isSignedIn) {
+        isAuthorized = true;
+        // if (currentApiRequest) {
+        //     sendAuthorizedApiRequest(currentApiRequest);
+        // }
+    } else {
+        isAuthorized = false;
+    }
+}
+
+const googleConnect = () => {
+    window.GoogleAuth; // Google Auth object.
+
+    function start() {
+        gapi.client.init({
+            'apiKey': 'AIzaSyAysq3hq5e6seJFkcyoun3s2-5HIRKCNgU',
+            'clientId': '1038963969656-a60janj4qrlnkv9mi1l8dp6tup0fgboq.apps.googleusercontent.com',
+            'scope': 'https://www.googleapis.com/auth/youtube',
+            'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest']
+        }).then(function () {
+            window.GoogleAuth = gapi.auth2.getAuthInstance();
+            console.log(GoogleAuth);
+            console.log(GoogleAuth.isSignedIn);
+            console.log(window.GoogleAuth.isSignedIn.get());
+            console.log(window.GoogleAuth.currentUser.get());
+            console.log(GoogleAuth.getInitialScopes());
+
+            // GoogleAuth.signIn();
+
+            // Listen for sign-in state changes.
+            window.GoogleAuth.isSignedIn.listen(updateSigninStatus);
+        });
+    }
+    gapi.load('client', start);
+
+
+    // function start() {
+    //     // 2. Initialize the JavaScript client library.
+    //     gapi.client.init({
+    //         'apiKey': 'YOUR_API_KEY',
+    //         // Your API key will be automatically added to the Discovery Document URLs.
+    //         'discoveryDocs': ['https://people.googleapis.com/$discovery/rest'],
+    //         // clientId and scope are optional if auth is not required.
+    //         'clientId': 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com',
+    //         'scope': 'profile',
+    //     }).then(function() {
+    //         // 3. Initialize and make the API request.
+    //         return gapi.client.people.people.get({
+    //             'resourceName': 'people/me',
+    //             'requestMask.includeField': 'person.names'
+    //         });
+    //     }).then(function(response) {
+    //         console.log(response.result);
+    //     }, function(reason) {
+    //         console.log('Error: ' + reason.result.error.message);
+    //     });
+    // };
+// 1. Load the JavaScript client library.
+
+};
+
+
 const PrivateRoute = connect(mapStateToProps, null)(({ component: Component, ...rest }) => (
     <Route {...rest} render={props => renderRedirect(Object.assign(props, rest, { Component }))} />
 ));
@@ -58,6 +129,7 @@ ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <div>
+                {googleConnect()}
                 <Route path="/" render={() => isAuthenticated() && <Header />} />
                 <div className="view-container">
                     <p>Loading ...</p>
