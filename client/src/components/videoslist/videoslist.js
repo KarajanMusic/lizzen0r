@@ -1,6 +1,4 @@
-//await api.authenticate(credentials);
-
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 import './videoslist.scss';
 import api from '../../utils/api';
@@ -129,7 +127,7 @@ export default class VideosList extends Component {
                     Ethereum Kovan Transaction Hash:{' '}
                     {this.state.license_block ? (
                         <a href={'https://kovan.etherscan.io/tx/' + this.state.license_block.tx_hash} target="_blank">
-                            this.state.license_block.tx_hash
+                            {this.state.license_block.tx_hash}
                         </a>
                     ) : (
                         'N.D.'
@@ -156,7 +154,7 @@ export default class VideosList extends Component {
                         <a
                             href={'https://kovan.etherscan.io/tx/' + this.state.registration_block.tx_hash}
                             target="_blank">
-                            this.state.registration_block.tx_hash
+                            {this.state.registration_block.tx_hash}
                         </a>
                     ) : (
                         'N.D.'

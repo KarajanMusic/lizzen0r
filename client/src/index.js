@@ -1,13 +1,11 @@
 /* eslint react/prop-types: 0 */
 
 import ReactDOM from 'react-dom';
-import { Provider, connect } from 'react-redux';
-import { Route, Redirect, Switch } from 'react-router';
+import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 // import registerServiceWorker from 'registerServiceWorker';
 import Initialiser from 'initialiser';
-import { isAuthenticated, isAdmin } from './utils/auth';
 
 import AuthenticationWrapper from './components/AuthenticationWrapper';
 import store from 'ducks/configureStore';
@@ -19,13 +17,9 @@ injectTapEventPlugin();
 // Listen to history changes
 const history = Initialiser.history;
 history.listen(location => {
+    console.log(location);
     // Collect activity with google analytics
     // ReactGA.pageview(location.pathname + location.search);
-});
-
-const mapStateToProps = state => ({
-    user: state.user,
-    fetching: state.fetching,
 });
 
 // const renderRedirect = props => {
@@ -50,24 +44,6 @@ const mapStateToProps = state => ({
 //         />
 //     );
 // };
-
-function updateSigninStatus(isSignedIn) {
-    console.log(isSignedIn);
-
-    console.log('GOT CALLEd');
-
-    // if (isSignedIn) {
-    //     // isAuthorized = true;
-    //     // if (currentApiRequest) {
-    //     //     sendAuthorizedApiRequest(currentApiRequest);
-    //     // }
-    //     console.log('IN HERE');
-    //     location.href = '/';
-    //
-    // } else {
-    //     location.href = '/login';
-    // }
-}
 
 // const connectGoogle = () => {
 //     window.GoogleAuth; // Google Auth object.

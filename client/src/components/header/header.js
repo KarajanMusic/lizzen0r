@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 import './header.scss';
 
 class Header extends Component {
-    constructor() {
-        super();
-    }
-
     componentDidMount() {
         // console.log(window.GoogleAuth.isSignedIn.get());
         console.log('MOUNTED');
