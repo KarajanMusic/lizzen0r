@@ -1,4 +1,3 @@
-const jsondb = require('../utils/jsondb');
 const Response = require('../utils/response');
 const videos = require('../data').videos;
 
@@ -25,7 +24,6 @@ module.exports = {
         const isrc = req.body.isrc;
         const startTime = nowTimestamp;
         const endTime = nowTimestamp + 5 * 60 * 1000;
-        jsondb.save('licenses', { userId, isrc, startTime, endTime });
         const result = await req.contracts.lizzenz0r.write('registerLicensePurchase', {
             userId,
             isrc,
@@ -41,7 +39,6 @@ module.exports = {
             };
             const userId = req.body.user_id;
             const licenseId = req.body.license_id;
-            jsondb.save('videos', videoData);
             await req.contracts.lizzenz0r.write('registerVideo', {
                 ytId: videoData.youtube_id,
                 licenseId,
