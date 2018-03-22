@@ -39,7 +39,7 @@ logger.info('[SERVER] Initializing routes');
 require('./routes')(app, contracts);
 
 // Fallback everything else to the React application
-app.get('googlef4c8fca73923a831.html', (req, res) => {
+app.get('/googlef4c8fca73923a831.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../data/googlef4c8fca73923a831.html'));
 });
 app.use(express.static(path.join(__dirname, '../client/dist')));
