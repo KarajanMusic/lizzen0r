@@ -1,7 +1,4 @@
 chrome.runtime.onInstalled.addListener(function() {
-  chrome.storage.sync.set({color: '#3aa757'}, function() {
-    console.log("Setting color");
-    });
   chrome.storage.sync.set({anyLocalKey: 'whatAKey'}, function() {
     console.log("Setting key");
   });
