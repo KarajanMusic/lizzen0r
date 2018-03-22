@@ -34,8 +34,9 @@ class AuthenticationWrapper extends Component {
         window.gapi.load('client', () => {
             window.gapi.client
                 .init({
-                    apiKey: 'AIzaSyAysq3hq5e6seJFkcyoun3s2-5HIRKCNgU',
-                    clientId: '1038963969656-a60janj4qrlnkv9mi1l8dp6tup0fgboq.apps.googleusercontent.com',
+                    //0J5EWwHy0WGuPPGxOc7PGzsH
+                    apiKey: 'AIzaSyAECuUwvN4tfl9qtL1QzQjh8iZVtUAcjLc',
+                    clientId: '472352541870-i5vs8e6jhjohc3dpa25tevm3r999jl6n.apps.googleusercontent.com',
                     scope: 'https://www.googleapis.com/auth/youtube',
                     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
                 })
