@@ -1672,7 +1672,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".video-container {\n  position: relative;\n  padding-bottom: 56.25%;\n  padding-top: 30px;\n  height: 0;\n  overflow: hidden; }\n  .video-container iframe,\n  .video-container object,\n  .video-container embed {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%; }\n", ""]);
+exports.push([module.i, ".video-container {\n  width: calc(33% - 20px);\n  margin: 10px;\n  padding-bottom: calc(15% - 20px);\n  height: 0;\n  display: inline-block;\n  overflow: hidden; }\n  .video-container iframe,\n  .video-container object,\n  .video-container embed {\n    position: absolute;\n    top: 20px;\n    left: 0;\n    width: 100%;\n    height: 100%; }\n", ""]);
 
 // exports
 
@@ -28132,7 +28132,13 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         return !videos ? 'Loading videos...' : videos.map(v => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'video-container', key: v.youtube_id },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('iframe', { width: '853', height: '480', src: v.link, frameBorder: '0', allowFullScreen: 'true' })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('iframe', {
+                width: '853',
+                height: '480',
+                src: 'https://www.youtube.com/embed/' + v.youtube_id,
+                frameBorder: '0',
+                allowFullScreen: 'true'
+            })
         ));
     }
 }

@@ -35,7 +35,13 @@ export default class VideosList extends Component {
             ? 'Loading videos...'
             : videos.map(v => (
                   <div className="video-container" key={v.youtube_id}>
-                      <iframe width="853" height="480" src={v.link} frameBorder="0" allowFullScreen="true" />
+                      <iframe
+                          width="853"
+                          height="480"
+                          src={'https://www.youtube.com/embed/' + v.youtube_id}
+                          frameBorder="0"
+                          allowFullScreen="true"
+                      />
                   </div>
               ));
     }
