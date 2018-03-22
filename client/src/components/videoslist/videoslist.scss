@@ -1,10 +1,35 @@
 .video-container {
+    position: relative;
     width: calc(33% - 20px);
-    margin: 10px;
-    padding-bottom: calc(15% - 20px);
+    margin: 10px 10px 40px 10px;
+    padding-bottom: calc(20% - 20px);
     height: 0;
     display: inline-block;
-    overflow: hidden;
+    /*overflow: hidden;*/
+
+    h1 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    button {
+        margin-top: calc(50% + 5px);
+        font-size: 14px;
+        margin-bottom: 0;
+        font-weight: 200;
+        color: #fff;
+        background-color: #121212;
+        border-radius: 4px;
+        padding: 5px 10px;
+        border: 0;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #b1b1b1;
+    }
 
     iframe,
     object,
@@ -13,6 +38,8 @@
         top: 20px;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: calc(100% - 20px);
+        overflow: hidden;
+        border-radius: 2px;
     }
 }

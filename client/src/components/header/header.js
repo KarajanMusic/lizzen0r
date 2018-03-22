@@ -16,7 +16,7 @@ class Header extends Component {
     render() {
         return (
             <div className="global-header">
-                <p>lizzenz03</p>
+                <p>lizzenz0r</p>
             </div>
         );
     }

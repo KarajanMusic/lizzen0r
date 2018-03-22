@@ -1672,7 +1672,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".video-container {\n  width: calc(33% - 20px);\n  margin: 10px;\n  padding-bottom: calc(15% - 20px);\n  height: 0;\n  display: inline-block;\n  overflow: hidden; }\n  .video-container iframe,\n  .video-container object,\n  .video-container embed {\n    position: absolute;\n    top: 20px;\n    left: 0;\n    width: 100%;\n    height: 100%; }\n", ""]);
+exports.push([module.i, ".video-container {\n  position: relative;\n  width: calc(33% - 20px);\n  margin: 10px 10px 40px 10px;\n  padding-bottom: calc(20% - 20px);\n  height: 0;\n  display: inline-block;\n  /*overflow: hidden;*/ }\n  .video-container h1 {\n    margin: 0;\n    font-size: 16px;\n    font-weight: 300; }\n  .video-container button {\n    margin-top: calc(50% + 5px);\n    font-size: 14px;\n    margin-bottom: 0;\n    font-weight: 200;\n    color: #fff;\n    background-color: #121212;\n    border-radius: 4px;\n    padding: 5px 10px;\n    border: 0;\n    transition: all 0.2s ease;\n    cursor: pointer; }\n  .video-container button:hover {\n    background-color: #b1b1b1; }\n  .video-container iframe,\n  .video-container object,\n  .video-container embed {\n    position: absolute;\n    top: 20px;\n    left: 0;\n    width: 100%;\n    height: calc(100% - 20px);\n    overflow: hidden;\n    border-radius: 2px; }\n", ""]);
 
 // exports
 
@@ -28041,7 +28041,7 @@ class Header extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'p',
                 null,
-                'lizzenz03'
+                'lizzenz0r'
             )
         );
     }
@@ -28107,20 +28107,51 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.state = {
             videos: null
         };
-        //this.getVideos = this.getVideos.bind(this);
+        this.getVideos = this.getVideos.bind(this);
     }
 
     componentDidMount() {
         // console.log(window.GoogleAuth.isSignedIn.get())
-        this.getVideos(this);
+        this.getVideos();
     }
 
-    getVideos(that) {
+    getVideos() {
+        var _this = this;
+
         return _asyncToGenerator(function* () {
             try {
                 const videos = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].getVideos();
-                console.log(videos);
-                that.setState({ videos });
+                _this.setState({ videos });
+            } catch (err) {
+                console.error(err);
+            }
+        })();
+    }
+
+    getUserID() {
+        return window.GoogleAuth.currentUser.get().El;
+    }
+
+    buyLicence(isrc) {
+        var _this2 = this;
+
+        return _asyncToGenerator(function* () {
+            try {
+                const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].buyLicence(_this2.getUserID(), v.isrc);
+                console.log(result);
+            } catch (err) {
+                console.error(err);
+            }
+        })();
+    }
+
+    registerVideo(link) {
+        var _this3 = this;
+
+        return _asyncToGenerator(function* () {
+            try {
+                const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].buyLicence(_this3.getUserID(), link);
+                console.log(result);
             } catch (err) {
                 console.error(err);
             }
@@ -28132,13 +28163,23 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         return !videos ? 'Loading videos...' : videos.map(v => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'video-container', key: v.youtube_id },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'h1',
+                null,
+                v.title
+            ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('iframe', {
                 width: '853',
                 height: '480',
                 src: 'https://www.youtube.com/embed/' + v.youtube_id,
                 frameBorder: '0',
                 allowFullScreen: 'true'
-            })
+            }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'button',
+                { onClick: () => this.buyLicence(v.isrc) },
+                'Buy licence'
+            )
         ));
     }
 }
@@ -28579,6 +28620,20 @@ class API {
     postUser(user) {
         return this.request('POST', 'users', null, {
             user
+        });
+    }
+
+    buyLicence(user_id, isrc) {
+        return this.request('POST', 'videos/buy', null, {
+            user_id,
+            isrc
+        });
+    }
+
+    registerVideo(user_id, link) {
+        return this.request('POST', 'videos/register', null, {
+            user_id,
+            link
         });
     }
 }
