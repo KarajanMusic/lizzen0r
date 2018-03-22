@@ -43,10 +43,11 @@ class API {
         });
     }
 
-    registerVideo(user_id, link) {
+    registerVideo(user_id, link, license_id) {
         return this.request('POST', 'videos/register', null, {
             user_id,
             link,
+            license_id,
         });
     }
 }

@@ -62,7 +62,6 @@ export default class VideosList extends Component {
         if (!this.state.license_id) {
             return alert('You need to buy a license first!');
         }
-        alert(JSON.stringify(this.state));
         try {
             this.setState({ loading: true });
             const result = await api.registerVideo(this.getUserID(), this.state.link, this.state.license_id);
