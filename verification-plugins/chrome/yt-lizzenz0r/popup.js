@@ -12,7 +12,6 @@ chrome.storage.sync.get('anyLocalKey', function(data) {
   anyLocalKeyField.innerHTML = data.anyLocalKey;
 });
 
-
 changeColor.onclick = function(element) {
     let color = element.target.value;
       chrome.tabs.executeScript(
@@ -23,4 +22,9 @@ changeColor.onclick = function(element) {
             console.log(arg)
           }
         );
-  };
+};
+
+chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+    var url = tabs[0].url;
+    console.log(url)
+});

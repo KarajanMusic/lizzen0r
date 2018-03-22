@@ -6,7 +6,7 @@
       "scripts": ["background.js"],
       "persistent": false
   },
-  "permissions": ["activeTab", "storage", "declarativeContent"],
+  "permissions": ["tabs", "activeTab", "storage", "declarativeContent"],
   "page_action": {
       "default_popup": "popup.html",
       "default_icon": {
