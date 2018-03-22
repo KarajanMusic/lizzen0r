@@ -20,7 +20,7 @@ class API {
                     Authorization: getAuthHeader(),
                 }),
             })
-            .then(response => response.data.payload)
+            .then(response => response.data)
             .catch(error => {
                 throw error.response;
             });
