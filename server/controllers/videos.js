@@ -21,16 +21,15 @@ module.exports = {
     },
     licenseVideo(req, res) {
         const nowTimestamp = Date.now();
-        const licenseData = {
-            isrc: 'AAAAAAA',
-            user_id: null,
-            youtube_id: '231321',
-            licence_type: 'Lizzenz0rSoundSupplyLicense',
-            licence_start_date: nowTimestamp,
-            licence_end_date: nowTimestamp + 5 * 60 * 1000, // 5 minutes
-            licence_id: 2312321321,
-        };
-        jsondb.save('licenses', licenseData);
+        // TODO remove
+        // req.body.user_id = 123;
+        const userId = 123;
+        const isrc = 'AAAAAAAAAAAA';
+        const start = nowTimestamp;
+        const end = nowTimestamp + 5 * 60 * 1000;
+        jsondb.save('licenses', { userId, isrc, start, end });
+
+        console.log(req.contracts.lizzenz0r)
         return Response.OK().send(res);
     },
     async registerLicensedVideo(req, res) {

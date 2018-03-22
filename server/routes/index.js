@@ -1,6 +1,13 @@
 const checkYoutubeToken = require('../middleware/auth').checkYoutubeToken;
 
-module.exports = function(app /*contracts*/) {
+module.exports = function(app, contracts) {
+
+    // TERRIBLE hack to make contracts interface available on request object
+    app.use((req, res, next) => {
+        req.contracts = contracts;
+        next();
+    });
+
     // Add headers
     app.use((req, res, next) => {
         // TODO: It should probably allow connection from local only, as it is the UI doing the requests

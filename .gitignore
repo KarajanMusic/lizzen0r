@@ -1,3 +1,4 @@
+server/data/db.json
 .env
 .idea
 docs/*
