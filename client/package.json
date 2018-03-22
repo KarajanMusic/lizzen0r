@@ -58,5 +58,5 @@
         "copy-index": "mkdir -p dist && cp index.html dist",
         "build:watch": "yarn install && yarn run copy-index & webpack --config webpack.config.dev.js --watch",
         "build": "yarn install && yarn run copy-index && node build.js"
-    },
+    }
 }

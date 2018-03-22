@@ -21,17 +21,13 @@
     "winston-color": "^1.0.0"
   },
   "scripts": {
-    "lint":
-      "./node_modules/eslint/bin/eslint.js ./server --fix && cd client && yarn lint && cd ..",
-    "build":
-      "yarn install && cd client && yarn run build && cd .. && yarn lint",
+    "lint": "./node_modules/eslint/bin/eslint.js ./server --fix && cd client && yarn lint && cd ..",
+    "build": "yarn install && cd client && yarn run build && cd .. && yarn lint",
     "prestart": "yarn run build",
     "start": "sh scripts/start.sh",
     "stop": "bash scripts/stop.sh",
-    "build:reload":
-      "yarn install && cd client && yarn run build && yarn run build:watch",
+    "build:reload": "yarn install && cd client && yarn run build && yarn run build:watch",
     "start-server:reload": "nodemon --watch server server/index.js",
-    "start:reload":
-      "concurrently \"yarn run build:reload\" \"nodemon --watch client/dist --watch server server/index.js --local\""
+    "start:reload": "concurrently \"yarn run build:reload\" \"nodemon --watch client/dist --watch server server/index.js --local\""
   }
 }
