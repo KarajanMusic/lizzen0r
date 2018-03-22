@@ -17,5 +17,7 @@ module.exports = function(app) {
 
     app.use('/api/redbull', require('./redbull')());
 
-    app.get('/api/*', (req, res) => res.send('got it'));
+    app.get('/api/videos', (req, res) => {
+        return Response.OK();
+    });
 };
