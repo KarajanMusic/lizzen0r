@@ -1,11 +1,13 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const logger = require('winston-color');
-const helmet = require('helmet');
-const path = require('path');
-const compression = require('compression');
-const config = require('./config');
+const express = require("express");
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
+const logger = require("winston-color");
+const helmet = require("helmet");
+const path = require("path");
+const compression = require("compression");
+const config = require("./config");
+
+require("loadenv")();
 
 // const port_https = 8000;
 const app = express();
@@ -17,13 +19,13 @@ const app = express();
 app.use(helmet());
 
 // Log HTTP requests
-app.use(morgan('common'));
+app.use(morgan("common"));
 
 // Compress all response bodies
 app.use(compression());
 
 // Parse request bodies
-app.use(bodyParser.json({ type: '*/*' }));
+app.use(bodyParser.json({ type: "*/*" }));
 
 // Add headers
 /*app.use((req, res, next) => {
@@ -35,17 +37,17 @@ app.use(bodyParser.json({ type: '*/*' }));
 });*/
 
 // Inject routes
-logger.info('[SERVER] Initializing routes');
-require('./routes')(app);
+logger.info("[SERVER] Initializing routes");
+require("./routes")(app);
 
 // Fallback everything else to the React application
-app.use(express.static(path.join(__dirname, '../client/dist')));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+app.use(express.static(path.join(__dirname, "../client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
 // Listen for requests
-logger.info('[SERVER] Starting...');
+logger.info("[SERVER] Starting...");
 const server = app.listen(config.port, () => {
-    logger.info(`Magic happens on port ${server.address().port}`);
+  logger.info(`Magic happens on port ${server.address().port}`);
 });
