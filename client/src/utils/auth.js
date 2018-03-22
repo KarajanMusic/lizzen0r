@@ -5,7 +5,5 @@ export function isAuthenticated() {
 }
 
 export function getAuthHeader() {
-    const token = window.GoogleAuth.currentUser.get();
-    console.log(token);
-    return 'Bearer ' + token;
+    return 'Bearer ' + window.GoogleAuth.currentUser.get().El;
 }

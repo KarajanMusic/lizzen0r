@@ -49,16 +49,17 @@ export default class VideosList extends Component {
 
     async registerVideo() {
         if (!this.state.link) {
-            alert('You need to enter a youtube link!');
-        } else if (!this.state.license_id) {
-            alert('You need to buy a license first!');
-        } else {
-            try {
-                const result = await api.registerVideo(this.getUserID(), this.state.link, this.state.license_id);
-                console.log(result);
-            } catch (err) {
-                console.error(err);
-            }
+            return alert('You need to enter a youtube link!');
+        }
+        if (!this.state.license_id) {
+            return alert('You need to buy a license first!');
+        }
+
+        try {
+            const result = await api.registerVideo(this.getUserID(), this.state.link, this.state.license_id);
+            console.log(result);
+        } catch (err) {
+            console.error(err);
         }
     }
 

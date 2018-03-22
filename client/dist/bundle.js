@@ -28156,16 +28156,17 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
         return _asyncToGenerator(function* () {
             if (!_this3.state.link) {
-                alert('You need to enter a youtube link!');
-            } else if (!_this3.state.license_id) {
-                alert('You need to buy a license first!');
-            } else {
-                try {
-                    const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].registerVideo(_this3.getUserID(), _this3.state.link, _this3.state.license_id);
-                    console.log(result);
-                } catch (err) {
-                    console.error(err);
-                }
+                return alert('You need to enter a youtube link!');
+            }
+            if (!_this3.state.license_id) {
+                return alert('You need to buy a license first!');
+            }
+
+            try {
+                const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].registerVideo(_this3.getUserID(), _this3.state.link, _this3.state.license_id);
+                console.log(result);
+            } catch (err) {
+                console.error(err);
             }
         })();
     }
@@ -28712,9 +28713,7 @@ function isAuthenticated() {
 }
 
 function getAuthHeader() {
-    const token = window.GoogleAuth.currentUser.get();
-    console.log(token);
-    return 'Bearer ' + token;
+    return 'Bearer ' + window.GoogleAuth.currentUser.get().El;
 }
 
 /***/ }),
