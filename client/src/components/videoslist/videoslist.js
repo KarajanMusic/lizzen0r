@@ -13,7 +13,8 @@ export default class VideosList extends Component {
             link: null,
             license_id: null,
             loading: false,
-            block: null,
+            license_block: null,
+            registration_block: null,
         };
         this.getVideos = this.getVideos.bind(this);
     }
@@ -44,7 +45,7 @@ export default class VideosList extends Component {
             this.setState({
                 license_id: result.licenseId,
                 loading: false,
-                block: {
+                license_block: {
                     block_hash: result.result.blockHash,
                     tx_hash: result.result.transactionHash,
                 },
@@ -55,7 +56,8 @@ export default class VideosList extends Component {
         }
     }
 
-    async registerVideo() {
+    async registerVideo(e) {
+        e.preventDefault();
         if (!this.state.link) {
             return alert('You need to enter a youtube link!');
         }
@@ -65,7 +67,13 @@ export default class VideosList extends Component {
         try {
             this.setState({ loading: true });
             const result = await api.registerVideo(this.getUserID(), this.state.link, this.state.license_id);
-            this.setState({ loading: false });
+            this.setState({
+                loading: false,
+                registration_block: {
+                    block_hash: result.result.blockHash,
+                    tx_hash: result.result.transactionHash,
+                },
+            });
             alert('Your video has been registered!');
             console.log(result);
         } catch (err) {
@@ -113,18 +121,49 @@ export default class VideosList extends Component {
                     </div>
                 ))}
                 <hr />
-                <h2 className="videos-section-title">License blockchain info</h2>
-                <p>Ethereum Kovan Block Hash: {this.state.block ? this.state.block.block_hash : 'N.D.'}</p>
-                <p>Ethereum Kovan Transaction Hash: {this.state.block ? this.state.block.tx_hash : 'N.D.'}</p>
+                <h3 className="videos-section-title">License blockchain info</h3>
+                <p>
+                    Ethereum Kovan Block Hash: {this.state.license_block ? this.state.license_block.block_hash : 'N.D.'}
+                </p>
+                <p>
+                    Ethereum Kovan Transaction Hash:{' '}
+                    {this.state.license_block ? (
+                        <a href={'https://kovan.etherscan.io/tx/' + this.state.license_block.tx_hash} target="_blank">
+                            this.state.license_block.tx_hash
+                        </a>
+                    ) : (
+                        'N.D.'
+                    )}
+                </p>
                 <hr />
                 <h2 className="videos-section-title">Register licensed youtube video</h2>
                 <p>Youtube Video Link:</p>
                 <form>
                     <input type="text" onChange={e => this.setYoutubeLink(e)} />
-                    <button className="black" onClick={() => this.registerVideo()}>
+                    <button className="black" onClick={e => this.registerVideo(e)}>
                         Register video
                     </button>
                 </form>
+                <hr />
+                <h3 className="videos-section-title">Video registration blockchain info</h3>
+                <p>
+                    Ethereum Kovan Block Hash:{' '}
+                    {this.state.registration_block ? this.state.registration_block.block_hash : 'N.D.'}
+                </p>
+                <p>
+                    Ethereum Kovan Transaction Hash:{' '}
+                    {this.state.registration_block ? (
+                        <a
+                            href={'https://kovan.etherscan.io/tx/' + this.state.registration_block.tx_hash}
+                            target="_blank">
+                            this.state.registration_block.tx_hash
+                        </a>
+                    ) : (
+                        'N.D.'
+                    )}
+                </p>
+                <br />
+                <br />
             </div>
         );
     }

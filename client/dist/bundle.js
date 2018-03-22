@@ -1672,7 +1672,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".videos-section-title {\n  margin: 10px;\n  font-weight: 200; }\n\np {\n  margin-left: 10px;\n  color: #666; }\n\nhr {\n  margin: 20px; }\n\nform {\n  margin-left: 10px; }\n  form button {\n    margin-left: 5px; }\n\nbutton.black {\n  font-size: 14px;\n  margin-bottom: 0;\n  font-weight: 200;\n  color: #fff;\n  background-color: #121212;\n  border-radius: 4px;\n  padding: 5px 10px;\n  border: 0;\n  transition: all 0.2s ease;\n  cursor: pointer; }\n\nbutton.black:hover {\n  background-color: #b1b1b1; }\n\n.video-container {\n  position: relative;\n  width: calc(33% - 20px);\n  margin: 10px 10px 40px 10px;\n  padding-bottom: calc(20% - 20px);\n  height: 0;\n  display: inline-block;\n  /*overflow: hidden;*/ }\n  .video-container h1 {\n    margin: 0;\n    font-size: 16px;\n    font-weight: 300; }\n  .video-container button {\n    margin-top: calc(50% + 5px); }\n  .video-container iframe,\n  .video-container object,\n  .video-container embed {\n    position: absolute;\n    top: 20px;\n    left: 0;\n    width: 100%;\n    height: calc(100% - 20px);\n    overflow: hidden;\n    border-radius: 2px; }\n\n.spinner-container {\n  position: absolute;\n  top: 50px;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n  transition: opacity 0.5s ease;\n  z-index: 10;\n  background: #fff; }\n  .spinner-container.show {\n    opacity: 1;\n    pointer-events: all; }\n  .spinner-container.hide {\n    opacity: 0;\n    pointer-events: none; }\n\n.spinner {\n  margin: 100px auto;\n  width: 100px;\n  height: 40px;\n  text-align: center;\n  font-size: 10px; }\n  .spinner > div {\n    background-color: #333;\n    height: 100%;\n    width: 6px;\n    display: inline-block;\n    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;\n    animation: sk-stretchdelay 1.2s infinite ease-in-out; }\n  .spinner .rect2 {\n    -webkit-animation-delay: -1.1s;\n    animation-delay: -1.1s; }\n  .spinner .rect3 {\n    -webkit-animation-delay: -1s;\n    animation-delay: -1s; }\n  .spinner .rect4 {\n    -webkit-animation-delay: -0.9s;\n    animation-delay: -0.9s; }\n  .spinner .rect5 {\n    -webkit-animation-delay: -0.8s;\n    animation-delay: -0.8s; }\n\n@-webkit-keyframes sk-stretchdelay {\n  0%,\n  40%,\n  100% {\n    -webkit-transform: scaleY(0.4); }\n  20% {\n    -webkit-transform: scaleY(1); } }\n\n@keyframes sk-stretchdelay {\n  0%,\n  40%,\n  100% {\n    transform: scaleY(0.4);\n    -webkit-transform: scaleY(0.4); }\n  20% {\n    transform: scaleY(1);\n    -webkit-transform: scaleY(1); } }\n", ""]);
+exports.push([module.i, ".videos-section-title {\n  margin: 10px;\n  font-weight: 200; }\n\np {\n  margin-left: 30px;\n  color: #666; }\n\nhr {\n  margin: 20px; }\n\nform {\n  margin-left: 30px; }\n  form button {\n    margin-left: 5px; }\n\nbutton.black {\n  font-size: 14px;\n  margin-bottom: 0;\n  font-weight: 200;\n  color: #fff;\n  background-color: #121212;\n  border-radius: 4px;\n  padding: 5px 10px;\n  border: 0;\n  transition: all 0.2s ease;\n  cursor: pointer; }\n\nbutton.black:hover {\n  background-color: #b1b1b1; }\n\n.video-container {\n  position: relative;\n  width: calc(33% - 20px);\n  margin: 10px 10px 40px 10px;\n  padding-bottom: calc(20% - 20px);\n  height: 0;\n  display: inline-block;\n  /*overflow: hidden;*/ }\n  .video-container h1 {\n    margin: 0;\n    font-size: 16px;\n    font-weight: 300; }\n  .video-container button {\n    margin-top: calc(50% + 5px); }\n  .video-container iframe,\n  .video-container object,\n  .video-container embed {\n    position: absolute;\n    top: 20px;\n    left: 0;\n    width: 100%;\n    height: calc(100% - 20px);\n    overflow: hidden;\n    border-radius: 2px; }\n\n.spinner-container {\n  position: absolute;\n  top: 50px;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n  transition: opacity 0.5s ease;\n  z-index: 10;\n  background: #fff; }\n  .spinner-container.show {\n    opacity: 1;\n    pointer-events: all; }\n  .spinner-container.hide {\n    opacity: 0;\n    pointer-events: none; }\n\n.spinner {\n  margin: 100px auto;\n  width: 100px;\n  height: 40px;\n  text-align: center;\n  font-size: 10px; }\n  .spinner > div {\n    background-color: #333;\n    height: 100%;\n    width: 6px;\n    display: inline-block;\n    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;\n    animation: sk-stretchdelay 1.2s infinite ease-in-out; }\n  .spinner .rect2 {\n    -webkit-animation-delay: -1.1s;\n    animation-delay: -1.1s; }\n  .spinner .rect3 {\n    -webkit-animation-delay: -1s;\n    animation-delay: -1s; }\n  .spinner .rect4 {\n    -webkit-animation-delay: -0.9s;\n    animation-delay: -0.9s; }\n  .spinner .rect5 {\n    -webkit-animation-delay: -0.8s;\n    animation-delay: -0.8s; }\n\n@-webkit-keyframes sk-stretchdelay {\n  0%,\n  40%,\n  100% {\n    -webkit-transform: scaleY(0.4); }\n  20% {\n    -webkit-transform: scaleY(1); } }\n\n@keyframes sk-stretchdelay {\n  0%,\n  40%,\n  100% {\n    transform: scaleY(0.4);\n    -webkit-transform: scaleY(0.4); }\n  20% {\n    transform: scaleY(1);\n    -webkit-transform: scaleY(1); } }\n", ""]);
 
 // exports
 
@@ -1702,7 +1702,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Hind:100,200,300,400,500,600,700);", ""]);
 
 // module
-exports.push([module.i, "html, body {\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  font-family: Verdana, sans-serif; }\n  html > #root, body > #root {\n    width: 100%;\n    height: 100%; }\n    html > #root > div, body > #root > div {\n      width: 100%;\n      height: 100%; }\n\n.__react_component_tooltip.show {\n  opacity: 1 !important; }\n", ""]);
+exports.push([module.i, "html,\nbody {\n  width: 100%;\n  height: 100%;\n  font-family: Verdana, sans-serif; }\n  html > #root,\n  body > #root {\n    width: 100%;\n    height: 100%; }\n    html > #root > div,\n    body > #root > div {\n      width: 100%;\n      height: 100%; }\n\n.__react_component_tooltip.show {\n  opacity: 1 !important; }\n", ""]);
 
 // exports
 
@@ -28109,7 +28109,8 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             link: null,
             license_id: null,
             loading: false,
-            block: null
+            license_block: null,
+            registration_block: null
         };
         this.getVideos = this.getVideos.bind(this);
     }
@@ -28147,7 +28148,7 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                 _this2.setState({
                     license_id: result.licenseId,
                     loading: false,
-                    block: {
+                    license_block: {
                         block_hash: result.result.blockHash,
                         tx_hash: result.result.transactionHash
                     }
@@ -28159,10 +28160,11 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         })();
     }
 
-    registerVideo() {
+    registerVideo(e) {
         var _this3 = this;
 
         return _asyncToGenerator(function* () {
+            e.preventDefault();
             if (!_this3.state.link) {
                 return alert('You need to enter a youtube link!');
             }
@@ -28172,7 +28174,13 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             try {
                 _this3.setState({ loading: true });
                 const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].registerVideo(_this3.getUserID(), _this3.state.link, _this3.state.license_id);
-                _this3.setState({ loading: false });
+                _this3.setState({
+                    loading: false,
+                    registration_block: {
+                        block_hash: result.result.blockHash,
+                        tx_hash: result.result.transactionHash
+                    }
+                });
                 alert('Your video has been registered!');
                 console.log(result);
             } catch (err) {
@@ -28245,7 +28253,7 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             )),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h2',
+                'h3',
                 { className: 'videos-section-title' },
                 'License blockchain info'
             ),
@@ -28253,13 +28261,18 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                 'p',
                 null,
                 'Ethereum Kovan Block Hash: ',
-                this.state.block ? this.state.block.block_hash : 'N.D.'
+                this.state.license_block ? this.state.license_block.block_hash : 'N.D.'
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'p',
                 null,
-                'Ethereum Kovan Transaction Hash: ',
-                this.state.block ? this.state.block.tx_hash : 'N.D.'
+                'Ethereum Kovan Transaction Hash:',
+                ' ',
+                this.state.license_block ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'a',
+                    { href: 'https://kovan.etherscan.io/tx/' + this.state.license_block.tx_hash, target: '_blank' },
+                    'this.state.license_block.tx_hash'
+                ) : 'N.D.'
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -28278,10 +28291,38 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', onChange: e => this.setYoutubeLink(e) }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'button',
-                    { className: 'black', onClick: () => this.registerVideo() },
+                    { className: 'black', onClick: e => this.registerVideo(e) },
                     'Register video'
                 )
-            )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'h3',
+                { className: 'videos-section-title' },
+                'Video registration blockchain info'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'p',
+                null,
+                'Ethereum Kovan Block Hash:',
+                ' ',
+                this.state.registration_block ? this.state.registration_block.block_hash : 'N.D.'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'p',
+                null,
+                'Ethereum Kovan Transaction Hash:',
+                ' ',
+                this.state.registration_block ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'a',
+                    {
+                        href: 'https://kovan.etherscan.io/tx/' + this.state.registration_block.tx_hash,
+                        target: '_blank' },
+                    'this.state.registration_block.tx_hash'
+                ) : 'N.D.'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null)
         );
     }
 }
