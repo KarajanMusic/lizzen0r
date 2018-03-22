@@ -1,21 +1,5 @@
 const rp = require('request-promise');
-
-const google = require('googleapis').google;
-const OAuth2 = google.auth.OAuth2;
-
-const oauth2Client = new OAuth2(
-    process.env.YOUTUBE_CLIENT_ID,
-    process.env.YOUTUBE_CLIENT_SECRET,
-    process.env.YOUR_REDIRECT_URL, // TODO:
-);
-
-const scopes = ['https://www.googleapis.com/auth/youtube'];
-
-const url = oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: scopes,
-});
-
+const checkYoutubeToken = require('../middleware/auth').checkYoutubeToken;
 /*router.get('handle_youtube_callback', async function(ctx, next) {
   ctx.redirect(`app://code/${encodeURIComponent(ctx.query.code)}`)
 });*/
@@ -30,10 +14,14 @@ module.exports = function(app) {
         next();
     });
 
+    app.use(checkYoutubeToken);
+
     app.use('/api/redbull', require('./redbull')());
 
+    app.get('/api/*', (req, res) => res.send('got it'));
+
     // Proxy all API requests to the backend
-    app.use('/api/*', async (req, res) => {
+    /*app.use('/api/*', async (req, res) => {
         if (req.method === 'OPTIONS') {
             return res.sendStatus(200);
         }
@@ -54,5 +42,5 @@ module.exports = function(app) {
                 return res.status(err.statusCode || 500).json(err.message);
             }
         }
-    });
+    });*/
 };
