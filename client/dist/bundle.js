@@ -1672,7 +1672,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".video-container {\n  position: relative;\n  width: calc(33% - 20px);\n  margin: 10px 10px 40px 10px;\n  padding-bottom: calc(20% - 20px);\n  height: 0;\n  display: inline-block;\n  /*overflow: hidden;*/ }\n  .video-container h1 {\n    margin: 0;\n    font-size: 16px;\n    font-weight: 300; }\n  .video-container button {\n    margin-top: calc(50% + 5px);\n    font-size: 14px;\n    margin-bottom: 0;\n    font-weight: 200;\n    color: #fff;\n    background-color: #121212;\n    border-radius: 4px;\n    padding: 5px 10px;\n    border: 0;\n    transition: all 0.2s ease;\n    cursor: pointer; }\n  .video-container button:hover {\n    background-color: #b1b1b1; }\n  .video-container iframe,\n  .video-container object,\n  .video-container embed {\n    position: absolute;\n    top: 20px;\n    left: 0;\n    width: 100%;\n    height: calc(100% - 20px);\n    overflow: hidden;\n    border-radius: 2px; }\n", ""]);
+exports.push([module.i, ".videos-section-title {\n  margin: 10px;\n  font-weight: 200; }\n\np {\n  margin-left: 10px;\n  color: #666; }\n\nhr {\n  margin: 20px; }\n\nform {\n  margin-left: 10px; }\n  form button {\n    margin-left: 5px; }\n\nbutton.black {\n  font-size: 14px;\n  margin-bottom: 0;\n  font-weight: 200;\n  color: #fff;\n  background-color: #121212;\n  border-radius: 4px;\n  padding: 5px 10px;\n  border: 0;\n  transition: all 0.2s ease;\n  cursor: pointer; }\n\nbutton.black:hover {\n  background-color: #b1b1b1; }\n\n.video-container {\n  position: relative;\n  width: calc(33% - 20px);\n  margin: 10px 10px 40px 10px;\n  padding-bottom: calc(20% - 20px);\n  height: 0;\n  display: inline-block;\n  /*overflow: hidden;*/ }\n  .video-container h1 {\n    margin: 0;\n    font-size: 16px;\n    font-weight: 300; }\n  .video-container button {\n    margin-top: calc(50% + 5px); }\n  .video-container iframe,\n  .video-container object,\n  .video-container embed {\n    position: absolute;\n    top: 20px;\n    left: 0;\n    width: 100%;\n    height: calc(100% - 20px);\n    overflow: hidden;\n    border-radius: 2px; }\n", ""]);
 
 // exports
 
@@ -28105,7 +28105,9 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     constructor() {
         super();
         this.state = {
-            videos: null
+            videos: null,
+            link: null,
+            license_id: null
         };
         this.getVideos = this.getVideos.bind(this);
     }
@@ -28132,12 +28134,36 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         return window.GoogleAuth.currentUser.get().El;
     }
 
-    buyLicence(isrc) {
+    buyLicense(isrc) {
         var _this2 = this;
 
         return _asyncToGenerator(function* () {
             try {
-                const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].buyLicence(_this2.getUserID(), v.isrc);
+                const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].buyLicense(_this2.getUserID(), isrc);
+                console.log(result);
+                _this2.setState({
+                    license_id: result
+                });
+                alert('You have been licensed to register a video with this recording!');
+            } catch (err) {
+                console.error(err);
+            }
+        })();
+    }
+
+    registerVideo() {
+        var _this3 = this;
+
+        return _asyncToGenerator(function* () {
+            if (!_this3.state.link) {
+                return alert('You need to enter a youtube link!');
+            }
+            if (!_this3.state.license_id) {
+                return alert('You need to buy a license first!');
+            }
+
+            try {
+                const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].registerVideo(_this3.getUserID(), _this3.state.link, _this3.state.license_id);
                 console.log(result);
             } catch (err) {
                 console.error(err);
@@ -28145,42 +28171,72 @@ class VideosList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         })();
     }
 
-    registerVideo(link) {
-        var _this3 = this;
-
-        return _asyncToGenerator(function* () {
-            try {
-                const result = yield __WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* default */].buyLicence(_this3.getUserID(), link);
-                console.log(result);
-            } catch (err) {
-                console.error(err);
-            }
-        })();
+    setYoutubeLink(e) {
+        this.setState({
+            link: e.target.value
+        });
     }
 
     render() {
         const { videos } = this.state;
-        return !videos ? 'Loading videos...' : videos.map(v => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        if (!videos) {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'h2',
+                { className: 'videos-section-title' },
+                'Loading videos...'
+            );
+        }
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { className: 'video-container', key: v.youtube_id },
+            null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h1',
-                null,
-                v.title
+                'h2',
+                { className: 'videos-section-title' },
+                'Buy music licence'
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('iframe', {
-                width: '853',
-                height: '480',
-                src: 'https://www.youtube.com/embed/' + v.youtube_id,
-                frameBorder: '0',
-                allowFullScreen: 'true'
-            }),
+            videos.map(v => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'video-container', key: v.youtube_id },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'h1',
+                    null,
+                    v.title
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('iframe', {
+                    width: '853',
+                    height: '480',
+                    src: 'https://www.youtube.com/embed/' + v.youtube_id,
+                    frameBorder: '0',
+                    allowFullScreen: 'true'
+                }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'button',
+                    { className: 'black', onClick: () => this.buyLicense(v.isrc) },
+                    'Buy license'
+                )
+            )),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'button',
-                { onClick: () => this.buyLicence(v.isrc) },
-                'Buy licence'
+                'h2',
+                { className: 'videos-section-title' },
+                'Register licensed youtube video'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'p',
+                null,
+                'Youtube Video Link:'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'form',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', onChange: e => this.setYoutubeLink(e) }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'button',
+                    { className: 'black', onClick: () => this.registerVideo() },
+                    'Register video'
+                )
             )
-        ));
+        );
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = VideosList;
@@ -28623,7 +28679,7 @@ class API {
         });
     }
 
-    buyLicence(user_id, isrc) {
+    buyLicense(user_id, isrc) {
         return this.request('POST', 'videos/buy', null, {
             user_id,
             isrc
@@ -28657,9 +28713,7 @@ function isAuthenticated() {
 }
 
 function getAuthHeader() {
-    const token = window.GoogleAuth.currentUser.get();
-    console.log(token);
-    return 'Bearer ' + token;
+    return 'Bearer ' + window.GoogleAuth.currentUser.get().El;
 }
 
 /***/ }),
