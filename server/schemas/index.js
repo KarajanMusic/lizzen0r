@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const schemas = {};
-const filenames = fs.readdirSync('server/schemas'); // eslint-disable-line no-sync
+const filenames = fs.readdirSync(__dirname); // eslint-disable-line no-sync
 for (const filename of filenames) {
     if (filename === 'index.js') {
         continue;
